@@ -1,0 +1,10 @@
+.DS_Store
+*.pyc
+
+.env
+env.py
+
+nyt/
+ingredient_phrase_tagger/
+AllRecipes/
+data/
