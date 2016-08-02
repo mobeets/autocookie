@@ -53,12 +53,15 @@ def parse_ingreds(recipes):
         recipes[i]['ingredientsParsed'] = [ingred for j,ingred in zip(RecipInds, Ingreds) if j == i]
     return recipes
 
-def gather_recipes(query, outfile):
+def gather_recipes(query, outfile=None):
     client = init()
     recipes = get_recipes(query, client=client)
     # recipes = parse_ingreds(recipes)
+    if outfile is None:
+        return recipes
     with open(outfile, 'w') as f:
         json.dump(recipes, f)
+    return recipes
 
 def get_simple_recipe(recipe):
     name = recipe['name']
@@ -76,9 +79,16 @@ def parse_recipes(infile, outfile=None):
     recipes = [get_simple_recipe(recipe) for recipe in recipes]
     print json.dumps(recipes[0], indent=4)
     if outfile is None:
-        return
+        return recipes
     with open(outfile, 'w') as f:
         json.dump(recipes, f, indent=4)
+    return recipes
+
+def recipe_ratios(infile, outfile):
+    with open(infile) as f:
+        recipes = json.load(f)
+    
+    return recipes
 
 if __name__ == '__main__':
     # gather_recipes('yellow cake', 'data/yellow-cake.json')
