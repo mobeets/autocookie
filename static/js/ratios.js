@@ -2,7 +2,7 @@
 function addRawQty(item) { // tsp.
     qtyRaw = item.qty;
     // switch runs til break, so cup will hit Tbsp
-    switch (item.qty) {
+    switch (item.unit) {
         case 'cup':
             qtyRaw *= 16;
         case 'Tbsp':
@@ -33,7 +33,7 @@ function makeRatio(r1, r2) {
     return {
         "a": r1.name,
         "b": r2.name,
-        "name": r1.name + " " + r2.name,
+        "name": r1.name + ":" + r2.name,
         "r": r1.qtyRaw/r2.qtyRaw
     }
 }
@@ -51,7 +51,7 @@ function getRatiosInRecipe(recipe) {
 function getAllRatios(recipes) {
     var allRatios = [];
     for (var i=0; i<recipes.length; i++) {
-        curRatio = getRatiosInRecipe(recips[i]);
+        curRatio = getRatiosInRecipe(recipes[i]);
         allRatios = allRatios.concat(curRatio);
     }
     return allRatios;
@@ -64,8 +64,7 @@ function allRatioRanges(recipes) {
     for (var i=0; i<allRatios.length; i++) {
         cur = allRatios[i];
         name = cur.name;
-        ind = $.inArray(name, minRatios);
-        if (ind > -1) {
+        if (name in minRatios) {
             minRatios[name] = Math.min(cur.r, minRatios[name]);
             maxRatios[name] = Math.max(cur.r, maxRatios[name]);
         } else {
@@ -73,15 +72,27 @@ function allRatioRanges(recipes) {
             maxRatios[name] = cur.r;
         }
     }
+    console.log(minRatios);
+    console.log(maxRatios);
     return {"min": minRatios, "max": maxRatios};
+}
+
+function oobsToMsgs(oobs) {
+    msgs = [];
+    for (var i=0; i<oobs.length; i++) {
+        oob = oobs[i];
+        msg = oob.ratio.name + ' ratio of ' + oob.ratio.r.toFixed(2) + ' is usually at least ' + oob.minVal.toFixed(2) + ' and at most ' + oob.maxVal.toFixed(2);
+        msgs.push(msg);
+    }
+    return msgs;
 }
 
 function outOfBoundsRatiosInRecipe(recipe, ranges) {
     ratios = getRatiosInRecipe(recipe);
     oobs = [];
     for (var i=0; i<ratios.length; i++) {
-        mn = ranges.minRatios[ratios[i].name];
-        mx = ranges.maxRatios[ratios[i].name];
+        mn = ranges.min[ratios[i].name];
+        mx = ranges.max[ratios[i].name];
         actual = ratios[i].r;
         if (actual < mn || actual > mx) {
             oobs.push({
