@@ -69,6 +69,7 @@ def get_simple_recipe(recipe):
     for ing in recipe['ingredientsParsed']:
         ing.pop('display')
     ings = recipe['ingredientsParsed']
+    ings = [ing['input'] for ing in recipe['ingredientsParsed']]
     return {'name': name, 'url': url, 'ingredients': ings}
 
 def parse_recipes(infile, outfile=None):
@@ -92,4 +93,4 @@ def recipe_ratios(infile, outfile):
 
 if __name__ == '__main__':
     # gather_recipes('yellow cake', 'data/yellow-cake.json')
-    parse_recipes('data/yellow-cake.json', 'data/yellow-cake_clean.json')
+    parse_recipes('data/yellow-cake.json', 'data/yellow-cake_clean2.json')
