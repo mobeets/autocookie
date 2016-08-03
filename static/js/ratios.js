@@ -77,11 +77,17 @@ function allRatioRanges(recipes) {
     return {"min": minRatios, "max": maxRatios};
 }
 
-function oobsToMsgs(oobs) {
+function oobsToMsgs(oobs, nRs) {
     msgs = [];
     for (var i=0; i<oobs.length; i++) {
         oob = oobs[i];
-        msg = oob.ratio.name + ' ratio of ' + oob.ratio.r.toFixed(2) + ' is usually at least ' + oob.minVal.toFixed(2) + ' and at most ' + oob.maxVal.toFixed(2);
+        msg = 'Warning! Your ' + oob.ratio.name + ' ratio of ' + oob.ratio.r.toFixed(2) + ' should be ';
+        if (oob.ratio.r < oob.minVal) {
+            msg += ' at least ' + oob.minVal.toFixed(2);
+        } else {
+            msg += ' at most ' + oob.maxVal.toFixed(2);
+        }
+        msg += ' (according to ' + nRs.toString() + ' recipes).';
         msgs.push(msg);
     }
     return msgs;

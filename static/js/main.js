@@ -24,6 +24,36 @@ var recipes = addAllRawQtys([recipe1, recipe2, recipe3, recipe4]);
 var ranges = allRatioRanges(recipes);
 var recipe = recipes[0];
 
+function oobsToColors(oobs) {
+  tooLow = [];
+  tooHigh = [];
+  for (var i=0; i<oobs.length; i++) {
+    oob = oobs[i];
+    nm1 = oob.ratio.a;
+    nm2 = oob.ratio.b;
+    if (oob.ratio.r < oob.minVal) {
+      nm3 = nm1; nm1 = nm2; nm2 = nm3;
+    }
+    tooLow.push(nm1);
+    tooHigh.push(nm2);
+  }
+
+  for (var i=0; i<recipe.length; i++) {
+    key = 'background';
+    val = 'none';
+    nm = recipe[i].name;
+    if ($.inArray(nm, tooLow) > -1 && $.inArray(nm, tooHigh) > -1) {
+      val = 'pink';
+    } else if ($.inArray(nm, tooLow) > -1) {
+      val = 'red';
+    } else if ($.inArray(nm, tooHigh) > -1) {
+      val = 'gray';
+    }
+    $('#item-' + nm).css(key, val);
+  }
+  
+}
+
 function initSlider(selector, valSelector, initVal, itemName, itemIndex) {
   $(selector).slider({
     value: initVal,
@@ -35,9 +65,9 @@ function initSlider(selector, valSelector, initVal, itemName, itemIndex) {
       // update value in recipe
       recipe[itemIndex].qtyRaw = ui.value;
       oobs = outOfBoundsRatiosInRecipe(recipe, ranges);
-      msgs = oobsToMsgs(oobs);
+      msgs = oobsToMsgs(oobs, recipes.length);
       $('.errors').html(msgs.join('<br>'));
-      console.log(oobs);
+      oobsToColors(oobs);
     }
   });
   val = $(selector).slider("value");
@@ -47,7 +77,7 @@ function initSlider(selector, valSelector, initVal, itemName, itemIndex) {
 function initIngredient(item, i) {
   ind = i.toString();
   var line = '<div class="col-lg-2"></div>' +
-      '<div class="ingredient col-lg-8">' +
+      '<div id="item-' + item.name + '" class="ingredient col-lg-8">' +
         '<div id="slider' + ind + '" class="slider"></div>' +
         '<div class="values">' +
           '<span id="val' + ind + '" class="amount"></span>' + 
