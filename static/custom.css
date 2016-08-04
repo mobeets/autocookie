@@ -98,4 +98,10 @@ h1 {
 .btn {
     margin-right: 5px;
 }
+.glyphs {
+    float: left;
+}
+.recipe-presets {
+    float: left;
+}
 
