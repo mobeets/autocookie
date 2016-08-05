@@ -225,9 +225,15 @@ function initRecipe(recipe) {
   }
 }
 
+function selectPreset(event) {
+  $('.ingredients').html('');
+  curId = event.target.id;
+  initRecipe(recipes[curId.split('recipe-')[1]]);
+}
+
 function initPresets(recipes) {
   for (var i=0; i<recipes.length; i++) {
-    btn = '<button type="button" class="btn btn-default">' + i.toString() + '</button>';
+    btn = '<button id=recipe-' + i.toString() + ' type="button" class="btn btn-default recipe-preset">' + i.toString() + '</button>';
     $('.recipe-presets').append(btn);
   }
 }
@@ -237,6 +243,7 @@ function init() {
   
   initPresets(recipes);
   initRecipe(recipe);
+  $('.recipe-preset').click(selectPreset);
 }
 // var recipes = addAllRawQtys(recipes);
 // var ranges = allRatioRanges(recipes);
