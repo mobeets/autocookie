@@ -111,6 +111,7 @@ h1 {
 }
 
 .progress-bar-filled {
-    background: #850000;
+    /*background: #850000;*/
+    background: #ffe066;
     /*background: gray;*/
 }

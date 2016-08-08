@@ -108,7 +108,7 @@ function selectPreset(event) {
 }
 
 function initPresets(recipes) {
-  for (var i=0; i<recipes.length; i++) {
+  for (var i=0; i<recipes.length-1; i++) {
     btn = '<button id=recipe-' + (i+1).toString() + ' type="button" class="btn btn-default recipe-preset">' + (i+1).toString() + '</button>';
     $('.recipe-presets').append(btn);
   }
