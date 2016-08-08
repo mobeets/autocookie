@@ -77,22 +77,6 @@ function allRatioRanges(recipes) {
     return {"min": minRatios, "max": maxRatios};
 }
 
-function oobsToMsgs(oobs, nRs) {
-    msgs = [];
-    for (var i=0; i<oobs.length; i++) {
-        oob = oobs[i];
-        msg = 'Warning! Your ' + oob.ratio.name + ' ratio of ' + oob.ratio.r.toFixed(2) + ' should be ';
-        if (oob.ratio.r < oob.minVal) {
-            msg += ' at least ' + oob.minVal.toFixed(2);
-        } else {
-            msg += ' at most ' + oob.maxVal.toFixed(2);
-        }
-        msg += ' (according to ' + nRs.toString() + ' recipes).';
-        msgs.push(msg);
-    }
-    return msgs;
-}
-
 function getIngredsInRecipe(recipe) {
     ingreds = [];
     for (var i=0; i<recipe.length; i++) {
@@ -141,13 +125,8 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         mxs = allMaxs[ingreds[i]];
         mn = Math.max(mns);
         mx = Math.min(mxs);
-        // console.log([ingreds[i], mn, mx]);
-        // console.log([mns]);
-        // console.log([mxs]);
-        // console.log('-------');
         validRanges[ingreds[i]] = [mn, mx];
     }
-    console.log(validRanges);
     return validRanges;
 }
 
@@ -175,65 +154,8 @@ function markOutOfBoundsIngredients(recipe, validRanges) {
     }
 }
 
-function checkOutOfBoundsIngrients(recipe, ranges) {
+function checkOutOfBoundsIngredients(recipe, ranges) {
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
+    setProgressBars(recipe, validRanges);
     markOutOfBoundsIngredients(recipe, validRanges);
 }
-
-// function outOfBoundsRatiosInRecipe(recipe, ranges) {
-
-//     ratios = getRatiosInRecipe(recipe);
-//     oobs = [];
-//     for (var i=0; i<ratios.length; i++) {
-//         mn = ranges.min[ratios[i].name];
-//         mx = ranges.max[ratios[i].name];
-//         actual = ratios[i].r;
-//         if (actual < mn || actual > mx) {
-//             oobs.push({
-//                 'ratio': ratios[i],
-//                 'minVal': mn,
-//                 'maxVal': mx
-//             });
-//         }
-//     }
-//     return oobs;
-// }
-
-
-// function oobsToColors(oobs) {
-//   tooLow = [];
-//   tooHigh = [];
-//   for (var i=0; i<oobs.length; i++) {
-//     oob = oobs[i];
-//     nm1 = oob.ratio.a;
-//     nm2 = oob.ratio.b;
-//     if (oob.ratio.r < oob.minVal) {
-//       nm3 = nm1; nm1 = nm2; nm2 = nm3;
-//     }
-//     tooHigh.push(nm1);
-//     tooLow.push(nm2);
-//   }
-
-//   for (var i=0; i<recipe.length; i++) {
-//     key = 'background';
-//     val = 'none';
-//     nm = recipe[i].name;
-//     if ($.inArray(nm, tooLow) > -1 && $.inArray(nm, tooHigh) > -1) {
-//       val = 'ban-circle';
-//     } else if ($.inArray(nm, tooLow) > -1) {
-//       val = 'arrow-up';
-//     } else if ($.inArray(nm, tooHigh) > -1) {
-//       val = 'arrow-down';
-//     } else {
-//       val = '';
-//     }
-//     if (val.length > 0) {
-//       glyph = '<span class="glyphicon glyphicon-' + val + '" aria-hidden="true"></span>';
-//     } else {
-//       glyph = '';
-//     }
-//     $('#item-' + nm + ' .glyphs').html(glyph);
-//     $('#item-' + nm).css(key, val);
-//   }
-  
-// }
