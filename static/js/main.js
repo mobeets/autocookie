@@ -6,7 +6,7 @@ for (var i=0; i<allRecipes.length; i++) {
 var recipes = addAllRawQtys(recipes);
 var ranges = allRatioRanges(recipes);
 
-var recipe = recipes[0];
+var curRecipe = recipes[0];
 var maxValDefault = 5*16*3;
 
 function getMaxVal(itemName) {
@@ -56,8 +56,8 @@ function initSlider(selector, valSelector, initVal, itemName, itemIndex) {
     slide: function( event, ui ) {
       $(valSelector).text(ui.value);
       // update value in recipe
-      recipe[itemIndex].qtyRaw = ui.value;
-      checkOutOfBoundsIngredients(recipe, ranges);
+      curRecipe[itemIndex].qtyRaw = ui.value;
+      checkOutOfBoundsIngredients(curRecipe, ranges);
     }
   });
   val = $(selector).slider("value");
@@ -96,20 +96,20 @@ function initRecipe(recipe, ranges) {
   for (var i=0; i<recipe.length; i++) {
     initIngredient(recipe[i], i);
   }
-
-  validRanges = getAllowedRangesInRecipe(recipe, ranges);
-  setProgressBars(recipe, validRanges);
+  setProgressBars(recipe, getAllowedRangesInRecipe(recipe, ranges));
 }
 
 function selectPreset(event) {
   $('.ingredients').html('');
   curId = event.target.id;
-  initRecipe(recipes[curId.split('recipe-')[1]], ranges);
+  // need to make this the global recipe
+  curRecipe = recipes[curId.split('recipe-')[1]];
+  initRecipe(curRecipe, ranges);
 }
 
 function initPresets(recipes) {
   for (var i=0; i<recipes.length; i++) {
-    btn = '<button id=recipe-' + i.toString() + ' type="button" class="btn btn-default recipe-preset">' + i.toString() + '</button>';
+    btn = '<button id=recipe-' + (i+1).toString() + ' type="button" class="btn btn-default recipe-preset">' + (i+1).toString() + '</button>';
     $('.recipe-presets').append(btn);
   }
 }
@@ -117,10 +117,10 @@ function initPresets(recipes) {
 function init() {
   // todo: handle ingredients in recipes
   
-  console.log(ranges);
   initPresets(recipes);
-  initRecipe(recipe, ranges);
+  initRecipe(curRecipe, ranges);
   $('.recipe-preset').click(selectPreset);
+  // $('#recipe-1').click();
 }
 
 $(document).ready(init);
