@@ -1,3 +1,9 @@
+var defaultStepSizes = [
+    {'unit': 'tsp', 'stepSizeTsp': 0.125},
+    {'unit': 'Tbsp', 'stepSizeTsp': 1.5},
+    {'unit': 'cup', 'stepSizeTsp': 3},
+];
+
 var defaultRanges = [
     {'name': 'eggs', 'maxQty': 12},
     {'name': 'sugar', 'maxQty': 3*16*3},

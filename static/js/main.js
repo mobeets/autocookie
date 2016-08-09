@@ -8,7 +8,18 @@ var ranges = allRatioRanges(recipes);
 
 var curRecipe = recipes[0];
 var maxValDefault = 5*16*3;
+var stepSizeDefault = 1; // tsp
 
+function getStepSize(itemUnit) {
+  stepSize = stepSizeDefault;
+  if (itemUnit.length > 0) {
+    rng = defaultStepSizes.filter(function (item) { return item.unit === itemUnit; });
+    if (rng.length > 0) {
+      stepSize = rng[0].stepSizeTsp;
+    }
+  }
+  return stepSize;
+}
 function getMaxVal(itemName) {
   maxVal = maxValDefault;
   rng = defaultRanges.filter(function (item) { return item.name === itemName; });
@@ -68,11 +79,12 @@ function updateMeasurement(value, unit, valSel, unitSel) {
 
 function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
   maxVal = getMaxVal(item.name);
+  stepSize = getStepSize(item.unit);
   $(slideSel).slider({
     value: item.qtyRaw,
     min: 0,
     max: maxVal,
-    step: 1,
+    step: stepSize,
     slide: function(event, ui) {
       updateMeasurement(ui.value, curRecipe[itemIndex].unit, valSel, unitSel);
       // update value in recipe
