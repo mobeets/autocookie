@@ -69,6 +69,7 @@ h1 {
     border: 1px solid #ACACAC;
     padding: 15px;
     margin: 5px;
+    cursor: pointer; cursor: hand;
 }
 .amount {
     border: 0;
@@ -112,6 +113,15 @@ h1 {
 
 .progress-bar-filled {
     /*background: #850000;*/
-    background: #ffe066;
+    
+    background: #0D4A4A;
     /*background: gray;*/
+}
+
+.deselected {
+    /*background: #7DB1B1;*/
+    /*background: #dfecec;*/
+    /*background: #dedede;*/
+    opacity: 0.2;
+    filter: alpha(opacity=20);
 }

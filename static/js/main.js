@@ -114,13 +114,27 @@ function initPresets(recipes) {
   }
 }
 
+function toggleIngredient() {
+  $(this).toggleClass('deselected');
+  checkOutOfBoundsIngredients(curRecipe, ranges);
+}
+
+function getDeselectedIngredients() {
+  uningreds = [];
+  objs = $('.deselected').parent().children('.values').children('.item').each(function () {
+    uningreds.push($(this).text());
+  });
+  return uningreds;
+}
+
 function init() {
   // todo: handle ingredients in recipes
   
   initPresets(recipes);
   initRecipe(curRecipe, ranges);
   $('.recipe-preset').click(selectPreset);
-  // $('#recipe-1').click();
+  $('.progress').click(toggleIngredient);
+  checkOutOfBoundsIngredients(curRecipe, ranges);
 }
 
 $(document).ready(init);

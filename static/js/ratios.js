@@ -85,9 +85,17 @@ function getIngredsInRecipe(recipe) {
     return ingreds;
 }
 
+function getMaxOfArray(numArray) {
+  return Math.max.apply(null, numArray);
+}
+function getMinOfArray(numArray) {
+  return Math.min.apply(null, numArray);
+}
+
 function getAllowedRangesInRecipe(recipe, ranges) {
     ratios = getRatiosInRecipe(recipe);
     ingreds = getIngredsInRecipe(recipe);
+    uningreds = getDeselectedIngredients();
     allMins = [];
     allMaxs = [];
     for (var i=0; i<ratios.length; i++) {
@@ -99,11 +107,11 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         aVal = recipe[$.inArray(aNm, ingreds)].qtyRaw;
         bVal = recipe[$.inArray(bNm, ingreds)].qtyRaw;
 
-        if ($.inArray(aNm, allMins) === -1) {
+        if (!(aNm in allMins)) {
             allMins[aNm] = [];
             allMaxs[aNm] = [];
         }
-        if ($.inArray(bNm, allMins) === -1) {
+        if (!(bNm in allMins)) {
             allMins[bNm] = [];
             allMaxs[bNm] = [];
         }
@@ -113,20 +121,35 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         bMax = aVal/mnRatio;
         bMin = aVal/mxRatio;
 
-        allMins[aNm].push(aMin);
-        allMaxs[aNm].push(aMax);
-        allMins[bNm].push(bMin);
-        allMaxs[bNm].push(bMax);
+        if ($.inArray(aNm, uningreds) === -1 && $.inArray(bNm, uningreds) === -1) {
+            allMins[aNm].push(aMin);
+            allMaxs[aNm].push(aMax);
+            allMins[bNm].push(bMin);
+            allMaxs[bNm].push(bMax);
+        }
+        // allMins[aNm].push(aMin);
+        // allMaxs[aNm].push(aMax);
+        // allMins[bNm].push(bMin);
+        // allMaxs[bNm].push(bMax);
     }
-
+    
     validRanges = [];
     for (var i=0; i<ingreds.length; i++) {
         mns = allMins[ingreds[i]];
         mxs = allMaxs[ingreds[i]];
-        mn = Math.max(mns);
-        mx = Math.min(mxs);
+        if (mns.length === 0) { 
+            mn = 0; 
+        } else {
+            mn = getMaxOfArray(mns);
+        }
+        if (mxs.length === 0) { 
+            mx = Number.POSITIVE_INFINITY;
+        } else {
+            mx = getMinOfArray(mxs);
+        }
         validRanges[ingreds[i]] = [mn, mx];
     }
+    console.log(validRanges);
     return validRanges;
 }
 
@@ -146,7 +169,6 @@ function markOutOfBoundsIngredients(recipe, validRanges) {
         } else {
             glyphId = '';
         }
-        // console.log([nm, val, mn, mx, glyphId]);
         if (glyphId.length > 0) {
             glyph = '<span class="glyphicon glyphicon-' + glyphId + '" aria-hidden="true"></span>';
         } else { glyph = ''; }
@@ -154,8 +176,23 @@ function markOutOfBoundsIngredients(recipe, validRanges) {
     }
 }
 
+function writeRanges(recipe, validRanges) {
+    msgs = [];
+    ingreds = getIngredsInRecipe(recipe);
+    for (var i=0; i<ingreds.length; i++) {
+        nm = ingreds[i];
+        val = recipe[$.inArray(nm, ingreds)].qtyRaw;
+        mn = validRanges[nm][0];
+        mx = validRanges[nm][1];
+        msg = [nm, val, mn, mx].join(', ');
+        msgs.push(msg);
+    }
+    $('.errors').html(msgs.join('<br>'));
+}
+
 function checkOutOfBoundsIngredients(recipe, ranges) {
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
+    writeRanges(recipe, validRanges);
     setProgressBars(recipe, validRanges);
     markOutOfBoundsIngredients(recipe, validRanges);
 }
