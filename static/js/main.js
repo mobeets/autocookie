@@ -195,6 +195,7 @@ function init() {
   $('#food-1').click();
   initPresets(curRecipes);
   $('#recipe-1').click();
+  $('.help-info').click(function() { $('.more-info').toggle(); } );
 }
 
 $(document).ready(init);

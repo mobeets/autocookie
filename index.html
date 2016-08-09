@@ -57,8 +57,7 @@
         </button>
         <ul class="dropdown-menu food-presets">
         </ul>
-      </div>
-      <span class="food-info"></span>
+      </div>      
     </div>
   </div>
 </div>
@@ -67,7 +66,12 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-2"></div>
-    <div id="shop" class="col-lg-8">
+    <div id="shop" class="col-lg-8 text-center">
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <span class="col-lg-8">Create a new recipe by adjusting the ingredient amounts. Disable the effect of an ingredient on others by clicking on its blue bar. <span class="glyphicon glyphicon-question-sign help-info" aria-hidden="true"></span> <span class="more-info">The blue bar above each ingredient tells you the minimum and maximum ingredient levels present in other similar recipes. These levels are based on the ratios between the amount of one ingredient and every other ingredient.</span><br><br>
+        <!--<span class="food-info">Create a new recipe by adjusting the ingredients within the blue ranges.</span><br><br>-->
+      </div>
       <div class="ingredients col-lg-16">
       </div>
       <div class="suggestions col-lg-12">
@@ -75,6 +79,7 @@
         <div class="col-lg-8 text-center">
           
           <!--<div class="btn-group food-presets"></div>-->
+          Recipes for <span class="food-name"></span> that I know about:
           <div class="recipe-presets-container">
             <ul class="pagination recipe-presets">
             </ul>

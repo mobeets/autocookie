@@ -68,7 +68,7 @@ h1 {
     border-radius: 10px;
     border: 1px solid #ACACAC;
     padding: 15px;
-    margin: 5px;
+    margin: 3px;
     cursor: pointer; cursor: hand;
 }
 .amount {
@@ -140,5 +140,13 @@ h1 {
 }
 .recipe-presets-container {
     /*float: left;*/
-    /*margin-bottom: 30px;*/
+    margin-top: 10px;
 }
+
+.help-info {
+    cursor: pointer; cursor: hand;
+}
+.more-info {
+    display: none;
+}
+
