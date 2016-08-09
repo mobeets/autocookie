@@ -3,15 +3,15 @@ td.number {
     text-align: right;
 }
 body {
-    /*font-family: 'Raleway', sans-serif;*/
-    font-family: 'Poiret One', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Helvetica', sans-serif;*/
     padding-top: 50px;
 }
 #shop {
-    font-family: 'Helvetica', sans-serif;
     /*font-family: 'Poiret One', sans-serif;*/
 }
 #header-container {
+    font-family: 'Poiret One', sans-serif;
     background: #AA3939;
     /*background: #550000;*/
     padding: 0px;
@@ -116,6 +116,7 @@ h1 {
 
 .progress-bar-filled {
     background: #0D4A4A;
+    background: #337ab7;
 }
 
 .deselected {
@@ -128,9 +129,14 @@ h1 {
     color: white;
 }
 
+.introduction {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
 .food-presets-container {
     /*float: left;*/
-    margin-bottom: 30px;
 }
 .recipe-presets-container {
     /*float: left;*/

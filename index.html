@@ -13,7 +13,7 @@
     <script src="static/js/jquery.min.js"></script>
     <script src="static/js/jquery-ui.js"></script>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Pacifico|Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico|Poiret+One|Raleway' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -42,30 +42,32 @@
   <div class="starter-template">
     <!--<h1><b>The Movie</b></h1>-->
     <h1>Autocake</h1>
-    <div class="row">
+    <!--<div class="row">
     <div class="col-lg-3"></div>
     <p class="subtitle col-lg-6">Create new recipes using ratios from old ones.</p>
     <div class="col-lg-3"></div>
+    </div>-->
+  </div>
+  <div class="row">
+    <div class="col-lg-16 introduction text-center">
+      <span class="food-info">You are making </span>
+      <div class="btn-group food-presets-container">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="food-name">Food</span> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu food-presets">
+        </ul>
+      </div>
+      <span class="food-info"></span>
     </div>
   </div>
 </div>
+
 
 <div class="container">
   <div class="row">
     <div class="col-lg-2"></div>
     <div id="shop" class="col-lg-8">
-      <div class="introduction col-lg-12">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8 text-center">
-          <div class="btn-group food-presets-container">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="food-name">Food</span> <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu food-presets">
-            </ul>
-          </div>
-        </div>
-      </div>
       <div class="ingredients col-lg-16">
       </div>
       <div class="suggestions col-lg-12">
