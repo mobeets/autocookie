@@ -1,14 +1,25 @@
 
-var recipes = [];
+var curRecipes = [];
 for (var i=0; i<allRecipes.length; i++) {
-  recipes.push(allRecipes[i].ingredients);
+  curRecipes.push(allRecipes[i].ingredients);
 }
-var recipes = addAllRawQtys(recipes);
-var ranges = allRatioRanges(recipes);
+var curRecipes = addAllRawQtys(curRecipes);
+var ranges = allRatioRanges(curRecipes);
 
-var curRecipe = recipes[0];
+var curRecipe = copyRecipeForModifying(curRecipes[0]);
 var maxValDefault = 5*16*3;
 var stepSizeDefault = 1; // tsp
+
+function copyRecipeForModifying(recipe) {
+  obj = $.extend(true, {}, recipe);
+  vals = [];
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        vals.push(obj[key]);
+    }
+  }
+  return vals;
+}
 
 function getStepSize(itemUnit) {
   stepSize = stepSizeDefault;
@@ -119,13 +130,17 @@ function initRecipe(recipe, ranges) {
     initIngredient(recipe[i], i);
   }
   checkOutOfBoundsIngredients(recipe, ranges);
+  $('.progress').click(toggleIngredient);
   // setProgressBars(recipe, getAllowedRangesInRecipe(recipe, ranges));
 }
 
 function selectPreset(event) {
+  $('.recipe-preset').removeClass('recipe-selected');
+  $(this).addClass('recipe-selected');
   curId = event.target.id;
-  // need to make this the global recipe
-  curRecipe = recipes[curId.split('recipe-')[1]-1];
+  ind = curId.split('recipe-')[1]-1;
+  curRecipe = copyRecipeForModifying(curRecipes[ind]);
+  // curRecipe = curRecipes[ind];
   initRecipe(curRecipe, ranges);
 }
 
@@ -134,6 +149,7 @@ function initPresets(recipes) {
     btn = '<button id=recipe-' + (i+1).toString() + ' type="button" class="btn btn-default recipe-preset">' + (i+1).toString() + '</button>';
     $('.recipe-presets').append(btn);
   }
+  $('.recipe-preset').click(selectPreset);
 }
 
 function toggleIngredient() {
@@ -150,13 +166,10 @@ function getDeselectedIngredients() {
 }
 
 function init() {
-  // todo: handle ingredients in recipes
-  
-  initPresets(recipes);
+  // todo: handle ingredients in recipes  
+  console.log(curRecipe);
+  initPresets(curRecipes);
   initRecipe(curRecipe, ranges);
-  $('.recipe-preset').click(selectPreset);
-  $('.progress').click(toggleIngredient);
-  // checkOutOfBoundsIngredients(curRecipe, ranges);
 }
 
 $(document).ready(init);
