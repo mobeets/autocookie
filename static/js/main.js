@@ -156,18 +156,22 @@ function initPresets(recipes) {
 }
 
 function selectFood(event) {
-  $('.food-preset').removeClass('food-selected');
-  $(this).addClass('food-selected');
+  // $('.food-preset').removeClass('food-selected');
+  // $(this).addClass('food-selected');
+  $('.food-preset').removeClass('active');
+  $(this).addClass('active');
   curId = $(this)[0].id;
   ind = curId.split('food-')[1]-1;
   console.log([curId, ind]);
+  $('.food-name').text(allFoods[ind]);
   // initFood(ind);
 }
 
 function initFoodPresets(foods) {
   for (var i=0; i<foods.length; i++) {
     ind = (i+1).toString();
-    btn = '<button id=food-' + ind + ' type="button" class="btn btn-default food-preset">' + foods[i] + '</button>';
+    btn = '<li id=food-' + ind + ' class="food-preset"><a href="#">' + foods[i] + '</a></li>';
+    // btn = '<button id=food-' + ind + ' type="button" class="btn btn-default food-preset">' + foods[i] + '</button>';
     $('.food-presets').append(btn);
   }
   $('.food-preset').click(selectFood);

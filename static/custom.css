@@ -104,6 +104,8 @@ h1 {
     float: left;
 }
 .recipe-presets {
+    margin: 0px;
+    /*float: left;*/
     cursor: pointer; cursor: hand;
     /*float: left;*/
 }
@@ -124,4 +126,13 @@ h1 {
 .food-selected {
     background: #337ab7;
     color: white;
+}
+
+.food-presets-container {
+    /*float: left;*/
+    margin-bottom: 30px;
+}
+.recipe-presets-container {
+    /*float: left;*/
+    /*margin-bottom: 30px;*/
 }
