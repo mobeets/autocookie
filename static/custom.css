@@ -91,6 +91,7 @@ h1 {
 
 .suggestions {
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 #add-some {
     margin-right: 5px;
@@ -103,31 +104,24 @@ h1 {
     float: left;
 }
 .recipe-presets {
-    float: left;
+    cursor: pointer; cursor: hand;
+    /*float: left;*/
 }
-
 
 .progress-bar-empty {
     background: #f5f5f5;
 }
 
 .progress-bar-filled {
-    /*background: #850000;*/
-    
     background: #0D4A4A;
-    /*background: gray;*/
 }
 
 .deselected {
-    /*background: #7DB1B1;*/
-    /*background: #dfecec;*/
-    /*background: #dedede;*/
     opacity: 0.2;
     filter: alpha(opacity=20);
 }
 
-.recipe-selected {
-    background: #dedede;
-    /*opacity: 0.5;*/
-    /*filter: alpha(opacity=50);*/
+.food-selected {
+    background: #337ab7;
+    color: white;
 }

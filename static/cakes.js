@@ -15,6 +15,8 @@ var defaultRanges = [
     {'name': 'vanilla', 'maxQty': 12},
 ];
 
+var allFoods = ["yellow cake", "cookies", "brownies"];
+
 var allRecipes = [
     {
         "url": "http://food52.com/blog/2262_tender_yellow_cake", 

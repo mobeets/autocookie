@@ -6,7 +6,7 @@ for (var i=0; i<allRecipes.length; i++) {
 var curRecipes = addAllRawQtys(curRecipes);
 var ranges = allRatioRanges(curRecipes);
 
-var curRecipe = copyRecipeForModifying(curRecipes[0]);
+var curRecipe;
 var maxValDefault = 5*16*3;
 var stepSizeDefault = 1; // tsp
 
@@ -24,7 +24,9 @@ function copyRecipeForModifying(recipe) {
 function getStepSize(itemUnit) {
   stepSize = stepSizeDefault;
   if (itemUnit.length > 0) {
-    rng = defaultStepSizes.filter(function (item) { return item.unit === itemUnit; });
+    rng = defaultStepSizes.filter(function (item) {
+      return item.unit === itemUnit;
+    });
     if (rng.length > 0) {
       stepSize = rng[0].stepSizeTsp;
     }
@@ -33,7 +35,9 @@ function getStepSize(itemUnit) {
 }
 function getMaxVal(itemName) {
   maxVal = maxValDefault;
-  rng = defaultRanges.filter(function (item) { return item.name === itemName; });
+  rng = defaultRanges.filter(function (item) { 
+    return item.name === itemName;
+  });
   if (rng.length > 0) {
     maxVal = rng[0].maxQty;
   }
@@ -124,32 +128,49 @@ function initIngredient(item, i) {
   $('.ingredients').append(line);
   initSlider('#slider'+ind, '#val'+ind, '#unit'+ind, item, i);
 }
-function initRecipe(recipe, ranges) {  
+function initRecipe(recipeInd, ranges) {
+  curRecipe = copyRecipeForModifying(curRecipes[recipeInd]);
   $('.ingredients').html('');
-  for (var i=0; i<recipe.length; i++) {
-    initIngredient(recipe[i], i);
+  for (var i=0; i<curRecipe.length; i++) {
+    initIngredient(curRecipe[i], i);
   }
-  checkOutOfBoundsIngredients(recipe, ranges);
+  checkOutOfBoundsIngredients(curRecipe, ranges);
   $('.progress').click(toggleIngredient);
-  // setProgressBars(recipe, getAllowedRangesInRecipe(recipe, ranges));
 }
 
 function selectPreset(event) {
-  $('.recipe-preset').removeClass('recipe-selected');
-  $(this).addClass('recipe-selected');
-  curId = event.target.id;
+  $('.recipe-preset').removeClass('active');
+  $(this).addClass('active');
+  curId = $(this)[0].id;
   ind = curId.split('recipe-')[1]-1;
-  curRecipe = copyRecipeForModifying(curRecipes[ind]);
-  // curRecipe = curRecipes[ind];
-  initRecipe(curRecipe, ranges);
+  initRecipe(ind, ranges);
 }
 
 function initPresets(recipes) {
   for (var i=0; i<recipes.length; i++) {
-    btn = '<button id=recipe-' + (i+1).toString() + ' type="button" class="btn btn-default recipe-preset">' + (i+1).toString() + '</button>';
+    ind = (i+1).toString();
+    btn = '<li id=recipe-' + ind + ' class="recipe-preset"><span>' + ind + '</span></li>';
     $('.recipe-presets').append(btn);
   }
   $('.recipe-preset').click(selectPreset);
+}
+
+function selectFood(event) {
+  $('.food-preset').removeClass('food-selected');
+  $(this).addClass('food-selected');
+  curId = $(this)[0].id;
+  ind = curId.split('food-')[1]-1;
+  console.log([curId, ind]);
+  // initFood(ind);
+}
+
+function initFoodPresets(foods) {
+  for (var i=0; i<foods.length; i++) {
+    ind = (i+1).toString();
+    btn = '<button id=food-' + ind + ' type="button" class="btn btn-default food-preset">' + foods[i] + '</button>';
+    $('.food-presets').append(btn);
+  }
+  $('.food-preset').click(selectFood);
 }
 
 function toggleIngredient() {
@@ -166,10 +187,10 @@ function getDeselectedIngredients() {
 }
 
 function init() {
-  // todo: handle ingredients in recipes  
-  console.log(curRecipe);
+  initFoodPresets(allFoods);
+  $('#food-1').click();
   initPresets(curRecipes);
-  initRecipe(curRecipe, ranges);
+  $('#recipe-1').click();
 }
 
 $(document).ready(init);
