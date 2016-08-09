@@ -34,6 +34,9 @@ function setProgressBar(item, startVal, endVal) {
   pctStart = valToPercent(startVal, maxVal);
   pctEnd = valToPercent(endVal, maxVal);
   pctEnd = Math.max(0, pctEnd - pctStart);
+  if (endVal - startVal < 0.2) {
+    pctEnd += 1;
+  }
 
   bar.children('.progress-bar-start').css('width', pctStart.toString() + '%');
   bar.children('.progress-bar-filled').css('width', pctEnd.toString() + '%');
@@ -99,22 +102,23 @@ function initIngredient(item, i) {
   initSlider('#slider'+ind, '#val'+ind, '#unit'+ind, item, i);
 }
 function initRecipe(recipe, ranges) {  
+  $('.ingredients').html('');
   for (var i=0; i<recipe.length; i++) {
     initIngredient(recipe[i], i);
   }
-  setProgressBars(recipe, getAllowedRangesInRecipe(recipe, ranges));
+  checkOutOfBoundsIngredients(recipe, ranges);
+  // setProgressBars(recipe, getAllowedRangesInRecipe(recipe, ranges));
 }
 
 function selectPreset(event) {
-  $('.ingredients').html('');
   curId = event.target.id;
   // need to make this the global recipe
-  curRecipe = recipes[curId.split('recipe-')[1]];
+  curRecipe = recipes[curId.split('recipe-')[1]-1];
   initRecipe(curRecipe, ranges);
 }
 
 function initPresets(recipes) {
-  for (var i=0; i<recipes.length-1; i++) {
+  for (var i=0; i<recipes.length; i++) {
     btn = '<button id=recipe-' + (i+1).toString() + ' type="button" class="btn btn-default recipe-preset">' + (i+1).toString() + '</button>';
     $('.recipe-presets').append(btn);
   }
@@ -140,7 +144,7 @@ function init() {
   initRecipe(curRecipe, ranges);
   $('.recipe-preset').click(selectPreset);
   $('.progress').click(toggleIngredient);
-  checkOutOfBoundsIngredients(curRecipe, ranges);
+  // checkOutOfBoundsIngredients(curRecipe, ranges);
 }
 
 $(document).ready(init);

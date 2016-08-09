@@ -218,7 +218,7 @@ function writeRanges(recipe, validRanges) {
 
 function checkOutOfBoundsIngredients(recipe, ranges) {
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
-    // writeRanges(recipe, validRanges);
+    writeRanges(recipe, validRanges);
     setProgressBars(recipe, validRanges);
     markOutOfBoundsIngredients(recipe, validRanges);
 }
