@@ -46,24 +46,6 @@ function setProgressBars(recipe, validRanges) {
     }
 }
 
-function initSlider(selector, valSelector, initVal, itemName, itemIndex) {
-  maxVal = getMaxVal(itemName);
-  $(selector).slider({
-    value: initVal,
-    min: 0,
-    max: maxVal,
-    step: 1,
-    slide: function( event, ui ) {
-      $(valSelector).text(ui.value);
-      // update value in recipe
-      curRecipe[itemIndex].qtyRaw = ui.value;
-      checkOutOfBoundsIngredients(curRecipe, ranges);
-    }
-  });
-  val = $(selector).slider("value");
-  $(valSelector).text(val);
-}
-
 function initProgressBar() {
   progBar = `
     <div class="progress">
@@ -73,6 +55,30 @@ function initProgressBar() {
       <div class="progress-bar progress-bar-empty progress-bar-end" role="progressbar" style="width:0%"></div>
     </div>`;
   return progBar;
+}
+
+function updateMeasurement(value, unit, valSel, unitSel) {
+  value = formatMeasurement(value, unit);
+  $(valSel).text(value);
+  $(unitSel).text(unit);
+}
+
+function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
+  maxVal = getMaxVal(item.name);
+  $(slideSel).slider({
+    value: item.qtyRaw,
+    min: 0,
+    max: maxVal,
+    step: 1,
+    slide: function(event, ui) {
+      updateMeasurement(ui.value, curRecipe[itemIndex].unit, valSel, unitSel);
+      // update value in recipe
+      curRecipe[itemIndex].qtyRaw = ui.value;
+      checkOutOfBoundsIngredients(curRecipe, ranges);
+    }
+  });
+  val = $(slideSel).slider("value");
+  updateMeasurement(val, item.unit, valSel, unitSel);
 }
 
 function initIngredient(item, i) {
@@ -85,12 +91,12 @@ function initIngredient(item, i) {
         '<div class="values">' +
           '<div class="glyphs"> </div>' + 
           '<span id="val' + ind + '" class="amount"></span>' + 
-          ' <span class="unit">tsp</span>' + 
+          ' <span id="unit' + ind + '" class="unit">tsp</span>' + 
           ' <span class="item">' + item.name + '</span>' + 
         '</div>' + 
       '</div>';
   $('.ingredients').append(line);
-  initSlider('#slider' + ind, '#val' + ind, item.qtyRaw, item.name, i);
+  initSlider('#slider'+ind, '#val'+ind, '#unit'+ind, item, i);
 }
 function initRecipe(recipe, ranges) {  
   for (var i=0; i<recipe.length; i++) {

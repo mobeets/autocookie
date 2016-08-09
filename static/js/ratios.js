@@ -1,3 +1,33 @@
+function nearestMultiple(number, numerator, denominator) {
+    // rounds to nearest numerator/denominator
+    // e.g., nearestMultiple(26.746346081599476,1,16) == 26.75
+    frac = denominator/numerator;
+    lower = Math.floor(frac * number) / frac;
+    upper = Math.ceil(frac * number) / frac;
+    if (Math.abs(number - lower) < Math.abs(number - upper)) {
+        return lower;
+    } else {
+        return upper;
+    }
+}
+
+function valueToFractionalString(value) {
+    // requires fraction-0.3.js
+    roundedValue = nearestMultiple(value, 1, 16);
+    return (new Fraction(roundedValue)).toString();
+}
+
+function formatMeasurement(value, unit) {
+    if (unit.length > 0) {
+        switch (unit) {
+            case 'cup':
+                value /= 16;
+            case 'Tbsp':
+                value /= 3;
+        }
+    }
+    return valueToFractionalString(value);
+}
 
 function addRawQty(item) { // tsp.
     qtyRaw = item.qty;
@@ -127,10 +157,6 @@ function getAllowedRangesInRecipe(recipe, ranges) {
             allMins[bNm].push(bMin);
             allMaxs[bNm].push(bMax);
         }
-        // allMins[aNm].push(aMin);
-        // allMaxs[aNm].push(aMax);
-        // allMins[bNm].push(bMin);
-        // allMaxs[bNm].push(bMax);
     }
     
     validRanges = [];
@@ -149,7 +175,7 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         }
         validRanges[ingreds[i]] = [mn, mx];
     }
-    console.log(validRanges);
+    // console.log(validRanges);
     return validRanges;
 }
 
@@ -192,7 +218,7 @@ function writeRanges(recipe, validRanges) {
 
 function checkOutOfBoundsIngredients(recipe, ranges) {
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
-    writeRanges(recipe, validRanges);
+    // writeRanges(recipe, validRanges);
     setProgressBars(recipe, validRanges);
     markOutOfBoundsIngredients(recipe, validRanges);
 }
