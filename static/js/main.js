@@ -1,16 +1,12 @@
 
 var curRecipes = [];
-for (var i=0; i<allRecipes.length; i++) {
-  curRecipes.push(allRecipes[i].ingredients);
-}
-var curRecipes = addAllRawQtys(curRecipes);
-var ranges = allRatioRanges(curRecipes);
-
+var ranges;
 var curRecipe;
+var curFood;
 var maxValDefault = 5*16*3;
 var stepSizeDefault = 1; // tsp
 
-function copyRecipeForModifying(recipe) {
+function copyForModifying(recipe) {
   obj = $.extend(true, {}, recipe);
   vals = [];
   for (var key in obj) {
@@ -129,7 +125,7 @@ function initIngredient(item, i) {
   initSlider('#slider'+ind, '#val'+ind, '#unit'+ind, item, i);
 }
 function initRecipe(recipeInd, ranges) {
-  curRecipe = copyRecipeForModifying(curRecipes[recipeInd]);
+  curRecipe = copyForModifying(curRecipes[recipeInd]);
   $('.ingredients').html('');
   for (var i=0; i<curRecipe.length; i++) {
     initIngredient(curRecipe[i], i);
@@ -138,7 +134,7 @@ function initRecipe(recipeInd, ranges) {
   $('.progress').click(toggleIngredient);
 }
 
-function selectPreset(event) {
+function selectRecipePreset(event) {
   $('.recipe-preset').removeClass('active');
   $(this).addClass('active');
   curId = $(this)[0].id;
@@ -146,32 +142,36 @@ function selectPreset(event) {
   initRecipe(ind, ranges);
 }
 
-function initPresets(recipes) {
+function initRecipePresets(recipes) {
+  $('.recipe-presets').html('');
   for (var i=0; i<recipes.length; i++) {
     ind = (i+1).toString();
     btn = '<li id=recipe-' + ind + ' class="recipe-preset"><span>' + ind + '</span></li>';
     $('.recipe-presets').append(btn);
   }
-  $('.recipe-preset').click(selectPreset);
+  $('.recipe-preset').click(selectRecipePreset);
+}
+
+function initFood(ind) {
+  food = allRecipes[ind];
+  $('.food-name').text(food.name);
+  prepRecipeData(food.recipes);
+  initRecipePresets(curRecipes);
+  $('#recipe-1').click();
 }
 
 function selectFood(event) {
-  // $('.food-preset').removeClass('food-selected');
-  // $(this).addClass('food-selected');
   $('.food-preset').removeClass('active');
   $(this).addClass('active');
   curId = $(this)[0].id;
   ind = curId.split('food-')[1]-1;
-  console.log([curId, ind]);
-  $('.food-name').text(allFoods[ind]);
-  // initFood(ind);
+  initFood(ind);  
 }
 
-function initFoodPresets(foods) {
-  for (var i=0; i<foods.length; i++) {
+function initFoodPresets() {
+  for (var i=0; i<allRecipes.length; i++) {
     ind = (i+1).toString();
-    btn = '<li id=food-' + ind + ' class="food-preset"><a href="#">' + foods[i] + '</a></li>';
-    // btn = '<button id=food-' + ind + ' type="button" class="btn btn-default food-preset">' + foods[i] + '</button>';
+    btn = '<li id=food-' + ind + ' class="food-preset"><a href="#">' + allRecipes[i].name + '</a></li>';
     $('.food-presets').append(btn);
   }
   $('.food-preset').click(selectFood);
@@ -190,12 +190,19 @@ function getDeselectedIngredients() {
   return uningreds;
 }
 
+function prepRecipeData(newRecipes) {
+  curRecipes = [];
+  for (var i=0; i<newRecipes.length; i++) {
+    curRecipes.push(newRecipes[i].ingredients);
+  }
+  curRecipes = addAllRawQtys(curRecipes);
+  ranges = allRatioRanges(curRecipes);
+}
+
 function init() {
-  initFoodPresets(allFoods);
+  $('.help-info').click(function(){$('.more-info').toggle();});
+  initFoodPresets();
   $('#food-1').click();
-  initPresets(curRecipes);
-  $('#recipe-1').click();
-  $('.help-info').click(function() { $('.more-info').toggle(); } );
 }
 
 $(document).ready(init);
