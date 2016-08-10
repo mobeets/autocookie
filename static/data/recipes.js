@@ -6,13 +6,16 @@ var defaultStepSizes = [
 
 var defaultRanges = [
     {'name': 'eggs', 'maxQty': 12},
-    {'name': 'sugar', 'maxQty': 3*16*3},
+    {'name': 'white sugar', 'maxQty': 3*16*3},
+    {'name': 'white sugar', 'maxQty': 3*16*3},
+    {'name': 'brown sugar', 'maxQty': 3*16*3},
     {'name': 'flour', 'maxQty': 5*16*3},
-    {'name': 'baking-powder', 'maxQty': 12},
-    {'name': 'salt', 'maxQty': 12},
+    {'name': 'baking powder', 'maxQty': 2*3},
+    {'name': 'salt', 'maxQty': 2*3},
     {'name': 'butter', 'maxQty': 2*16*3},
     {'name': 'milk', 'maxQty': 5*16*3},
     {'name': 'vanilla', 'maxQty': 12},
+    {'name': 'chocolate chips', 'maxQty': 3*16*3},
 ];
 
 var allFoods = ["yellow cake", "cookies", "brownies"];
@@ -23,9 +26,9 @@ var cakeRecipes = [
         "name": "Tender Yellow Cake", 
         "ingredients": [
             {'name': 'eggs', 'qty': 3, 'unit': ''},
-            {'name': 'sugar', 'qty': 1.5, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 1.5, 'unit': 'cup'},
             {'name': 'flour', 'qty': 2.25, 'unit': 'cup'},
-            {'name': 'baking-powder', 'qty': 3, 'unit': 'tsp'},
+            {'name': 'baking powder', 'qty': 3, 'unit': 'tsp'},
             {'name': 'salt', 'qty': 1, 'unit': 'tsp'},
             {'name': 'milk', 'qty': 1, 'unit': 'cup'},
             {'name': 'vanilla', 'qty': 1.5, 'unit': 'tsp'}
@@ -36,9 +39,9 @@ var cakeRecipes = [
         "name": "Basic Yellow Cake", 
         "ingredients": [
             {'name': 'eggs', 'qty': 5, 'unit': ''},
-            {'name': 'sugar', 'qty': 2.5, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 2.5, 'unit': 'cup'},
             {'name': 'flour', 'qty': 3, 'unit': 'cup'},
-            {'name': 'baking-powder', 'qty': 1, 'unit': 'tsp'},
+            {'name': 'baking powder', 'qty': 1, 'unit': 'tsp'},
             {'name': 'salt', 'qty': 0.25, 'unit': 'tsp'},
             {'name': 'butter', 'qty': 1.5, 'unit': 'cup'},
             {'name': 'milk', 'qty': 1, 'unit': 'cup'},
@@ -50,9 +53,9 @@ var cakeRecipes = [
         "name": "Classic Yellow Cake with Fudge Frosting", 
         "ingredients": [
             {'name': 'eggs', 'qty': 5, 'unit': ''},
-            {'name': 'sugar', 'qty': 1.75, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 1.75, 'unit': 'cup'},
             {'name': 'flour', 'qty': 3, 'unit': 'cup'},
-            {'name': 'baking-powder', 'qty': 1, 'unit': 'Tbsp'},
+            {'name': 'baking powder', 'qty': 1, 'unit': 'Tbsp'},
             {'name': 'salt', 'qty': 0.5, 'unit': 'tsp'},
             {'name': 'butter', 'qty': 1, 'unit': 'cup'},
             {'name': 'vanilla', 'qty': 1, 'unit': 'tsp'}
@@ -63,9 +66,9 @@ var cakeRecipes = [
         "name": "Perfect Yellow Cake", 
         "ingredients": [
             {'name': 'eggs', 'qty': 4, 'unit': ''},
-            {'name': 'sugar', 'qty': 2, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 2, 'unit': 'cup'},
             {'name': 'flour', 'qty': 2.67, 'unit': 'cup'},
-            {'name': 'baking-powder', 'qty': 2, 'unit': 'tsp'},
+            {'name': 'baking powder', 'qty': 2, 'unit': 'tsp'},
             {'name': 'salt', 'qty': 0.5, 'unit': 'tsp'},
             {'name': 'butter', 'qty': 1, 'unit': 'cup'},
             {'name': 'milk', 'qty': 1, 'unit': 'cup'},
@@ -77,9 +80,9 @@ var cakeRecipes = [
         "name": "Home Made Yellow Cake Mix", 
         "ingredients": [
             {'name': 'eggs', 'qty': 3, 'unit': ''},
-            {'name': 'sugar', 'qty': 2.25, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 2.25, 'unit': 'cup'},
             {'name': 'flour', 'qty': 2.5, 'unit': 'cup'},
-            {'name': 'baking-powder', 'qty': 2, 'unit': 'tsp'},
+            {'name': 'baking powder', 'qty': 2, 'unit': 'tsp'},
             {'name': 'salt', 'qty': 1, 'unit': 'tsp'},
             {'name': 'butter', 'qty': 0.33, 'unit': 'cup'},
             {'name': 'milk', 'qty': 1, 'unit': 'cup'},
@@ -90,9 +93,9 @@ var cakeRecipes = [
         "name": "Yellow Butter Cake", 
         "ingredients": [
             {'name': 'eggs', 'qty': 6, 'unit': ''},
-            {'name': 'sugar', 'qty': 1.5, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 1.5, 'unit': 'cup'},
             {'name': 'flour', 'qty': 3, 'unit': 'cup'},
-            {'name': 'baking-powder', 'qty': 1.33, 'unit': 'Tbsp'},
+            {'name': 'baking powder', 'qty': 1.33, 'unit': 'Tbsp'},
             {'name': 'salt', 'qty': 0.75, 'unit': 'tsp'},
             {'name': 'butter', 'qty': 0.75, 'unit': 'cup'},
             {'name': 'milk', 'qty': 1, 'unit': 'cup'},
@@ -104,9 +107,9 @@ var cakeRecipes = [
         "name": "Plain Yellow Cake", 
         "ingredients": [
             {'name': 'eggs', 'qty': 2, 'unit': ''},
-            {'name': 'sugar', 'qty': 1.67, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 1.67, 'unit': 'cup'},
             {'name': 'flour', 'qty': 3, 'unit': 'cup'},
-            {'name': 'baking-powder', 'qty': 2.25, 'unit': 'tsp'},
+            {'name': 'baking powder', 'qty': 2.25, 'unit': 'tsp'},
             {'name': 'salt', 'qty': 0.5, 'unit': 'tsp'},
             {'name': 'butter', 'qty': 1, 'unit': 'cup'},
             {'name': 'milk', 'qty': 1.33, 'unit': 'cup'},
@@ -118,9 +121,9 @@ var cakeRecipes = [
         "name": "Quick Yellow Cake", 
         "ingredients": [
             {'name': 'eggs', 'qty': 3, 'unit': ''},
-            {'name': 'sugar', 'qty': 1.5, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 1.5, 'unit': 'cup'},
             {'name': 'flour', 'qty': 2.25, 'unit': 'cup'},
-            {'name': 'baking-powder', 'qty': 3.5, 'unit': 'tsp'},
+            {'name': 'baking powder', 'qty': 3.5, 'unit': 'tsp'},
             {'name': 'salt', 'qty': 1, 'unit': 'tsp'},
             {'name': 'butter', 'qty': 0.5, 'unit': 'cup'},
             {'name': 'milk', 'qty': 1.25, 'unit': 'cup'},

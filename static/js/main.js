@@ -3,7 +3,7 @@ var curRecipes = [];
 var ranges;
 var curRecipe;
 var curFood;
-var maxValDefault = 5*16*3;
+var maxValDefault = 20;
 var stepSizeDefault = 1; // tsp
 
 function copyForModifying(recipe) {
