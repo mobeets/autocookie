@@ -69,7 +69,7 @@ h1 {
     border: 1px solid #ACACAC;
     padding: 15px;
     margin: 3px;
-    cursor: pointer; cursor: hand;
+    /*cursor: pointer; cursor: hand;*/
 }
 .amount {
     border: 0;
@@ -108,6 +108,10 @@ h1 {
     /*float: left;*/
     cursor: pointer; cursor: hand;
     /*float: left;*/
+}
+
+.progress {
+    cursor: pointer; cursor: hand;
 }
 
 .progress-bar-empty {

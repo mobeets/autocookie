@@ -92,5 +92,8 @@ def recipe_ratios(infile, outfile):
     return recipes
 
 if __name__ == '__main__':
+    # gather_recipes('chocolate chip cookies', 'data/choc-chip-cookies.json')
+    parse_recipes('data/choc-chip-cookies.json', 'data/choc-chip-cookies_clean.json')
+
     # gather_recipes('yellow cake', 'data/yellow-cake.json')
-    parse_recipes('data/yellow-cake.json', 'data/yellow-cake_clean2.json')
+    # parse_recipes('data/yellow-cake.json', 'data/yellow-cake_clean2.json')

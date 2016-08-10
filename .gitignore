@@ -7,4 +7,4 @@ env.py
 nyt/
 ingredient_phrase_tagger/
 AllRecipes/
-data/
+rawdata/
