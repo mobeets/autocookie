@@ -197,8 +197,11 @@ function markOutOfBoundsIngredients(recipe, validRanges) {
         }
         if (glyphId.length > 0) {
             glyph = '<span class="glyphicon glyphicon-' + glyphId + '" aria-hidden="true"></span>';
-        } else { glyph = ''; }
-        $('#item-' + nm + ' .glyphs').html(glyph);
+        } else {
+            glyph = '';
+        }
+        // console.log([nm, mn, mx, glyphId, glyph]);
+        $('#item-' + nm.replace(" ", "-") + ' .glyphs').html(glyph);
     }
 }
 
@@ -218,7 +221,7 @@ function writeRanges(recipe, validRanges) {
 
 function checkOutOfBoundsIngredients(recipe, ranges) {
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
-    // writeRanges(recipe, validRanges);
-    setProgressBars(recipe, validRanges);
+    writeRanges(recipe, validRanges);
     markOutOfBoundsIngredients(recipe, validRanges);
+    setProgressBars(recipe, validRanges);
 }

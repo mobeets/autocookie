@@ -134,6 +134,21 @@ var cakeRecipes = [
 
 var cookieRecipes = [
     {
+        "url": "http://www.cookingwithvinyl.com/duet-chocolate-chip-cookies/", 
+        "name": "Chocolate Chip Cookies", 
+        "ingredients": [
+            {'name': 'butter', 'qty': 1, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 1, 'unit': 'cup'},
+            {'name': 'brown sugar', 'qty': 1, 'unit': 'cup'},
+            {'name': 'eggs', 'qty': 2, 'unit': ''},
+            {'name': 'vanilla', 'qty': 2, 'unit': 'tsp'},
+            {'name': 'baking soda', 'qty': 1, 'unit': 'tsp'},
+            {'name': 'salt', 'qty': 1, 'unit': 'tsp'},
+            {'name': 'flour', 'qty': 2.5, 'unit': 'cup'},
+            {'name': 'chocolate chips', 'qty': 2, 'unit': 'cup'},
+        ]
+    }, 
+    {
         "url": "http://www.bakedbyrachel.com/2013/08/soft-batch-chocolate-chip-cookie-recipe/", 
         "name": "Soft Batch Chocolate Chip Cookies", 
         "ingredients": [
@@ -149,21 +164,6 @@ var cookieRecipes = [
             {'name': 'chocolate chips', 'qty': 1.5, 'unit': 'cup'},
         ]
     },
-    {
-        "url": "http://www.cookingwithvinyl.com/duet-chocolate-chip-cookies/", 
-        "name": "Chocolate Chip Cookies", 
-        "ingredients": [
-            {'name': 'butter', 'qty': 1, 'unit': 'cup'},
-            {'name': 'white sugar', 'qty': 1, 'unit': 'cup'},
-            {'name': 'brown sugar', 'qty': 1, 'unit': 'cup'},
-            {'name': 'eggs', 'qty': 2, 'unit': ''},
-            {'name': 'vanilla', 'qty': 2, 'unit': 'tsp'},
-            {'name': 'baking soda', 'qty': 1, 'unit': 'tsp'},
-            {'name': 'salt', 'qty': 1, 'unit': 'tsp'},
-            {'name': 'flour', 'qty': 2.5, 'unit': 'cup'},
-            {'name': 'chocolate chips', 'qty': 2, 'unit': 'cup'},
-        ]
-    }, 
     {
         "url": "http://24carrotkitchen.com/chocolate-chip-cookies/", 
         "name": "Chocolate Chip Cookies", 

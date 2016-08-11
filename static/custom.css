@@ -68,9 +68,11 @@ h1 {
     border-radius: 10px;
     border: 1px solid #ACACAC;
     padding: 15px;
-    margin: 3px;
-    /*cursor: pointer; cursor: hand;*/
 }
+.ingred-container {
+    padding: 3px;
+}
+
 .amount {
     border: 0;
     /*color: #f6931f;*/
@@ -119,7 +121,6 @@ h1 {
 }
 
 .progress-bar-filled {
-    background: #0D4A4A;
     background: #337ab7;
 }
 
@@ -151,6 +152,15 @@ h1 {
     cursor: pointer; cursor: hand;
 }
 .more-info {
+    text-align: left;
     display: none;
 }
-
+.more-info p {
+    /*text-indent: 30px;*/
+    margin: 0;
+    margin-top: 8px;
+}
+.blue-bar-text {
+    background: #337ab7;
+    color: #337ab7;
+}

@@ -51,35 +51,41 @@ function valToPercent(val, maxVal) {
 }
 
 function setProgressBar(item, startVal, endVal) {
-  bar = $('div[id^="item-' + item.name + '"] .progress');
+  bar = $('div[id^="item-' + (item.name).replace(" ", "-") + '"] .progress');
   maxVal = getMaxVal(item.name);
   pctStart = valToPercent(startVal, maxVal);
   pctEnd = valToPercent(endVal, maxVal);
   pctEnd = Math.max(0, pctEnd - pctStart);
-  if (endVal - startVal < 0.2) {
+  if (endVal - startVal < 0.2 && endVal >= startVal) {
+    // add padding for otherwise-invisible percentages
     pctEnd += 1;
   }
 
-  bar.children('.progress-bar-start').css('width', pctStart.toString() + '%');
-  bar.children('.progress-bar-filled').css('width', pctEnd.toString() + '%');
+  if (endVal >= startVal) {
+    bar.children('.progress-bar-start').css('width', pctStart.toString() + '%');
+    bar.children('.progress-bar-filled').css('width', pctEnd.toString() + '%');
+  } else {
+    // makes progress bar fully gray
+    bar.children('.progress-bar-start').css('width', '0%');
+    bar.children('.progress-bar-filled').css('width', '0%');
+  }
 }
 
 function setProgressBars(recipe, validRanges) {
-    for (var i=0; i<recipe.length; i++) {
-        nm = recipe[i].name;
-        setProgressBar(recipe[i], validRanges[nm][0], validRanges[nm][1]);
-    }
+  for (var i=0; i<recipe.length; i++) {
+    nm = recipe[i].name;
+    setProgressBar(recipe[i], validRanges[nm][0], validRanges[nm][1]);
+  }
 }
 
 function initProgressBar() {
-  progBar = `
+  return `
     <div class="progress">
       <div class="progress-bar progress-bar-empty progress-bar-start" role="progressbar" style="width:0%"></div>
       <div class="progress-bar progress-bar-filled" role="progressbar" style="width:0%">
       </div>
       <div class="progress-bar progress-bar-empty progress-bar-end" role="progressbar" style="width:0%"></div>
     </div>`;
-  return progBar;
 }
 
 function updateMeasurement(value, unit, valSel, unitSel) {
@@ -110,8 +116,9 @@ function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
 function initIngredient(item, i) {
   ind = i.toString();
   var line = 
-      '<div class="col-lg-2"></div>' +
-      '<div id="item-' + item.name + '" class="ingredient col-lg-4">' +
+      // '<div class="col-lg-2"></div>' +
+      '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ingred-container">' +
+      '<div id="item-' + (item.name).replace(" ", "-") + '" class="ingredient">' +
         initProgressBar() + 
         '<div id="slider' + ind + '" class="slider"></div>' +
         '<div class="values">' +
@@ -120,7 +127,7 @@ function initIngredient(item, i) {
           ' <span id="unit' + ind + '" class="unit">tsp</span>' + 
           ' <span class="item">' + item.name + '</span>' + 
         '</div>' + 
-      '</div>';
+      '</div></div>';
   $('.ingredients').append(line);
   initSlider('#slider'+ind, '#val'+ind, '#unit'+ind, item, i);
 }

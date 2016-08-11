@@ -41,13 +41,7 @@
 <div id="header-container" class="container">
 
   <div class="starter-template">
-    <!--<h1><b>The Movie</b></h1>-->
     <h1>Autocake</h1>
-    <!--<div class="row">
-    <div class="col-lg-3"></div>
-    <p class="subtitle col-lg-6">Create new recipes using ratios from old ones.</p>
-    <div class="col-lg-3"></div>
-    </div>-->
   </div>
   <div class="row">
     <div class="col-lg-16 introduction text-center">
@@ -67,26 +61,20 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-2"></div>
-    <div id="shop" class="col-lg-8 text-center">
+    <div id="shop" class="col-lg-12">
       <div class="row">
-        <div class="col-lg-2"></div>
-        <span class="col-lg-8">Create a new recipe by adjusting the ingredient amounts. Disable the effect of an ingredient on others by clicking on its blue bar. <span class="glyphicon glyphicon-question-sign help-info" aria-hidden="true"></span> <span class="more-info">The blue bar above each ingredient tells you the minimum and maximum ingredient levels present in other similar recipes. These levels are based on the ratios between the amount of one ingredient and every other ingredient.</span><br><br>
-        <!--<span class="food-info">Create a new recipe by adjusting the ingredients within the blue ranges.</span><br><br>-->
+        <span class="col-lg-offset-2 col-lg-8">Create a new recipe by adjusting the ingredient amounts. Disable the effect of an ingredient on others by clicking on its blue bar. <span class="glyphicon glyphicon-question-sign help-info" aria-hidden="true"></span> <span class="more-info"><p>The <span class="blue-bar-text">blue bar</span> above each ingredient tells you the suggested minimum and maximum ingredient levels. These levels are based on the ratios between the amount of one ingredient and every other ingredient, as learned from similar recipes. If you fall out of this range, <span class="glyphicon glyphicon-arrow-up"></span> or a <span class="glyphicon glyphicon-arrow-down"></span> will point the way back to safety.</p><p>Sometimes, you'll see a <span class="glyphicon glyphicon-ban-circle"></span> next to an ingredient. This means other ingredients need to be adjusted in order to bring this ingredient back in range.</p></span>
       </div>
-      <div class="ingredients col-lg-16">
+      <div class="row ingredients text-center">
       </div>
       <div class="suggestions col-lg-12">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8 text-center">
-          
-          <!--<div class="btn-group food-presets"></div>-->
+        <div class="col-lg-offset-2 col-lg-8 text-center">
           Recipes for <span class="food-name"></span> that I know about:
           <div class="recipe-presets-container">
             <ul class="pagination recipe-presets">
             </ul>
           </div>
         </div>
-        <!-- <div class="recipe-presets col-lg-8"><span id="add-some">Recipe presets: </span></div>-->
       </div>
       <div class="errors col-lg-12">
       </div>
@@ -97,7 +85,6 @@
 
 <br><br><br><br>
 </div><!-- /.container -->
-<!--<script src="static/cakes.js"></script>-->
 <script src="static/data/recipes.js"></script>
 <script src="static/js/fraction-0.3.js"></script>
 <script src="static/js/ratios.js"></script>
