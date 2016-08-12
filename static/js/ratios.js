@@ -1,3 +1,4 @@
+
 function nearestMultiple(number, numerator, denominator) {
     // rounds to nearest numerator/denominator
     // e.g., nearestMultiple(26.746346081599476,1,16) == 26.75
@@ -85,6 +86,27 @@ function getAllRatios(recipes) {
         allRatios = allRatios.concat(curRatio);
     }
     return allRatios;
+}
+
+function exportRecipe() {
+    var lines = [];
+    lines.push('<br><h4>' + curFood.name + '</h4>');
+    for (var i=0; i< curRecipe.length; i++) {
+        item = curRecipe[i];
+        qty = formatMeasurement(item.qtyRaw, item.unit);
+        msg = qty + ' ' + item.unit + ' ' + item.name;
+        lines.push(msg);
+    }
+    urls = [];
+    console.log(food.recipes);
+    for (var i=0; i< food.recipes.length; i++) {
+        msg = '<a href="' + food.recipes[i].url + '">' + (i+1).toString() + '</a>';
+        urls.push(msg);
+    }
+    lines.push('<br>For cooking instructions, see these recipes for guidelines: ' + urls.join(', '));
+    // temp = 350; mins = 8;
+    // lines.push('<br>Bake at ' + temp.toString() + 'F for ' + mins.toString() + ' minutes');
+    return lines.join('<br>');
 }
 
 function findSingleIngreds(recipes) {
@@ -276,7 +298,8 @@ function writeRanges(recipe, validRanges) {
 function checkOutOfBoundsIngredients(recipe, ranges) {
     setDeselecteds(ranges);
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
-    writeRanges(recipe, validRanges);
+    // writeRanges(recipe, validRanges);
     markOutOfBoundsIngredients(recipe, validRanges);
     setProgressBars(recipe, validRanges);
+    $('#output').html('');
 }

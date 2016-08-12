@@ -138,7 +138,7 @@ function initRecipe(recipeInd, ranges) {
   for (var i=0; i<curRecipe.length; i++) {
     initIngredient(curRecipe[i], i);
   }
-  checkOutOfBoundsIngredients(curRecipe, ranges);
+  checkOutOfBoundsIngredients(curRecipe, ranges);  
   $('.progress').click(toggleIngredient);
 }
 
@@ -165,6 +165,7 @@ function initFood(ind) {
   $('.food-name').text(food.name);
   prepRecipeData(food.recipes);
   initRecipePresets(curRecipes);
+  curFood = food;
   $('#recipe-1').click();
 }
 
@@ -211,6 +212,7 @@ function init() {
   $('.help-info').click(function(){$('.more-info').toggle();});
   initFoodPresets();
   $('#food-1').click();
+  $('#export').click(function(){$('#output').html(exportRecipe())});
 }
 
 $(document).ready(init);
