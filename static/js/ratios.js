@@ -87,6 +87,47 @@ function getAllRatios(recipes) {
     return allRatios;
 }
 
+function findSingleIngreds(recipes) {
+    var counts = [];
+    for (var i=0; i<recipes.length; i++) {
+        for (var j=0; j<recipes[i].length; j++) {
+            nm = recipes[i][j].name;
+            if (nm in counts) {
+                counts[nm] += 1;
+            } else {
+                counts[nm] = 1;
+            }
+        }
+    }
+    var ones = [];
+    for (var ingred in counts) {
+        if (counts[ingred] == 1) {
+            ones.push(ingred);
+        }
+    }
+    return ones;
+}
+
+// function allRatioRanges0(recipes) {
+//     allRatios = getAllRatios(recipes);
+//     minRatios = [];
+//     maxRatios = [];
+//     for (var i=0; i<allRatios.length; i++) {
+//         cur = allRatios[i];
+//         name = cur.name;
+//         if (name in minRatios) {
+//             minRatios[name] = Math.min(cur.r, minRatios[name]);
+//             maxRatios[name] = Math.max(cur.r, maxRatios[name]);
+//         } else {
+//             minRatios[name] = cur.r;
+//             maxRatios[name] = cur.r;
+//         }
+//     }
+//     console.log(minRatios);
+//     console.log(maxRatios);
+//     return {"min": minRatios, "max": maxRatios};
+// }
+
 function allRatioRanges(recipes) {
     allRatios = getAllRatios(recipes);
     minRatios = [];
@@ -95,16 +136,15 @@ function allRatioRanges(recipes) {
         cur = allRatios[i];
         name = cur.name;
         if (name in minRatios) {
-            minRatios[name] = Math.min(cur.r, minRatios[name]);
-            maxRatios[name] = Math.max(cur.r, maxRatios[name]);
+            minRatios[name].push(cur.r);
+            maxRatios[name].push(cur.r);
         } else {
-            minRatios[name] = cur.r;
-            maxRatios[name] = cur.r;
+            minRatios[name] = [cur.r];
+            maxRatios[name] = [cur.r];
         }
     }
-    console.log(minRatios);
-    console.log(maxRatios);
-    return {"min": minRatios, "max": maxRatios};
+    ones = findSingleIngreds(recipes);
+    return {"min": minRatios, "max": maxRatios, "ignores": ones};
 }
 
 function getIngredsInRecipe(recipe) {
@@ -122,6 +162,14 @@ function getMinOfArray(numArray) {
   return Math.min.apply(null, numArray);
 }
 
+function setDeselecteds(ranges) {
+    // deselect ingreds that only occur once across all recipes
+    for (var i=0; i<ranges.ignores.length; i++) {
+        nm = ranges.ignores[i].replace(" ", "-");
+        $('#item-' + nm + ' .progress').addClass("deselected");
+    }
+}
+
 function getAllowedRangesInRecipe(recipe, ranges) {
     ratios = getRatiosInRecipe(recipe);
     ingreds = getIngredsInRecipe(recipe);
@@ -132,10 +180,13 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         aNm = ratios[i].a;
         bNm = ratios[i].b;
 
-        mnRatio = ranges.min[ratios[i].name];
-        mxRatio = ranges.max[ratios[i].name];
         aVal = recipe[$.inArray(aNm, ingreds)].qtyRaw;
         bVal = recipe[$.inArray(bNm, ingreds)].qtyRaw;
+
+        mnRatios = ranges.min[ratios[i].name];
+        mxRatios = ranges.max[ratios[i].name];
+        mnRatio = getMinOfArray(mnRatios);
+        mxRatio = getMaxOfArray(mxRatios);
 
         if (!(aNm in allMins)) {
             allMins[aNm] = [];
@@ -158,9 +209,6 @@ function getAllowedRangesInRecipe(recipe, ranges) {
             allMaxs[aNm].push(aMax);
             allMins[bNm].push(bMin);
             allMaxs[bNm].push(bMax);
-            // if (aNm === "chocolate chips" || bNm == "chocolate chips") {
-            //     console.log([aNm, aMin, aMax, bNm, bMin, bMax]);
-            // }
         }
     }
     
@@ -226,6 +274,7 @@ function writeRanges(recipe, validRanges) {
 }
 
 function checkOutOfBoundsIngredients(recipe, ranges) {
+    setDeselecteds(ranges);
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
     writeRanges(recipe, validRanges);
     markOutOfBoundsIngredients(recipe, validRanges);

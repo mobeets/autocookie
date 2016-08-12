@@ -204,7 +204,7 @@ function prepRecipeData(newRecipes) {
     curRecipes.push(newRecipes[i].ingredients);
   }
   curRecipes = addAllRawQtys(curRecipes);
-  ranges = allRatioRanges(curRecipes);
+  ranges = allRatioRanges(curRecipes);  
 }
 
 function init() {
