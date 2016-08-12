@@ -18,8 +18,6 @@ var defaultRanges = [
     {'name': 'chocolate chips', 'maxQty': 3*16*3},
 ];
 
-var allFoods = ["yellow cake", "cookies", "brownies"];
-
 var cakeRecipes = [
     {
         "url": "http://food52.com/blog/2262_tender_yellow_cake", 

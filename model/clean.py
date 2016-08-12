@@ -1,6 +1,8 @@
 import json
 import parser
 
+INGREDS_KEY = 'ingredients'
+
 def show_ings(ings):
     print '--------'
     for ing in ings:
@@ -18,14 +20,14 @@ def parse_recipe_ingreds(recipe):
     keep = not(any([ing['has_error'] for ing in ings]))
     [(ing.pop('has_error'), ing.pop('input')) for ing in ings]
     if keep:
-        recipe['ingredientsParsed'] = ings
+        recipe[INGREDS_KEY] = ings
     return recipe, keep
 
 def all_ingreds_in_recipes(recipes):
     # get master list of all ings
     all_ings = []
     for r in recipes:
-        all_ings.extend([i['name'] for i in r['ingredientsParsed']])
+        all_ings.extend([i['name'] for i in r[INGREDS_KEY]])
     return all_ings
 
 def count_ingreds(recipes):
@@ -36,7 +38,7 @@ def count_ingreds(recipes):
 def prune_recipes_with_unique_items(recipes, counts, max_unique=1):
     rs = []
     for r in recipes:
-        ignores = [i['name'] for i in r['ingredientsParsed'] if counts[i['name']] <= 1]
+        ignores = [i['name'] for i in r[INGREDS_KEY] if counts[i['name']] <= 1]
         if len(ignores) <= max_unique:
             rs.append(r)
     return rs
@@ -56,7 +58,7 @@ def parse_and_prune_recipes(infile, outfile=None):
 
     # print recipes with non-unique ings
     # for r in rs:
-    #     show_ings(r['ingredientsParsed'])
+    #     show_ings(r[INGREDS_KEY])
     return json.dumps(rs)
 
 if __name__ == '__main__':

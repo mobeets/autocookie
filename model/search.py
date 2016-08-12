@@ -40,7 +40,7 @@ def remove_extra_stuff(recipes):
     for r in recipes:
         rs.append({
             'url_ymly': r['attribution']['url'],
-            'url_og': r['source']['sourceRecipeUrl'],
+            'url': r['source']['sourceRecipeUrl'],
             'num': r['numberOfServings'],
             'yld': r['yields'],
             'id': r['id'],
