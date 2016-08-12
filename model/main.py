@@ -132,57 +132,6 @@ def parse_recipes(infile, outfile=None):
         json.dump(recipes, f, indent=4)
     return recipes
 
-def show_ings(ings):
-    print '--------'
-    for ing in ings:
-        if 'has_error' in ing:
-            ing.pop('has_error')
-        if 'input' in ing:
-            inp = ing.pop('input')
-            print inp
-        print ing
-
-def parse_recipes_simple(infile, outfile=None):
-    with open(infile) as f:
-        recipes = json.load(f)
-    rs = []
-    for r in recipes:
-        ings = []
-        for ing in r['ingredientLines']:
-            ings.append(parser.simple(ing))
-        keep = not(any([ing['has_error'] for ing in ings]))
-        if keep:
-            show_ings(ings)
-            r['ingredientsParsed'] = ings
-            rs.append(r)
-
-    # get master list of all ings
-    all_ings = []
-    for r in rs:
-        if 'ingredientsParsed' not in r:
-            continue
-        ings = r['ingredientsParsed']
-        all_ings.extend([i['name'] for i in ings])
-    ings_set = list(set(all_ings))
-    counts = dict([(ing, all_ings.count(ing)) for ing in ings_set])
-
-    # print recipes with non-unique ings
-    for r in rs:
-        if 'ingredientsParsed' not in r:
-            continue
-        ings = r['ingredientsParsed']
-        ignore = [i['name'] for i in ings if counts[i['name']] <= 1]
-        if not ignore:
-            show_ings(ings)
-        else:
-            print 'IGNORING because ' + ', '.join(ignore)
-
-    if outfile is None:
-        return recipes
-    with open(outfile, 'w') as f:
-        json.dump(recipes, f, indent=4)
-    return recipes
-
 if __name__ == '__main__':
     # gather_recipes('chocolate chip cookies', 'rawdata/choc-chip-cookies.json')
     # parse_recipes('rawdata/choc-chip-cookies.json', 'rawdata/choc-chip-cookies_clean.json')
