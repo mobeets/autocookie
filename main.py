@@ -3,6 +3,7 @@ from yummly import Client
 from unidecode import unidecode
 from env import YUMMLY_API_ID, YUMMLY_API_KEY
 import parse_ingredients
+import parser
 
 # import os
 # source .env
@@ -72,11 +73,57 @@ def get_simple_recipe(recipe):
     ings = [ing['input'] for ing in recipe['ingredientsParsed']]
     return {'name': name, 'url': url, 'ingredients': ings}
 
+def recipe_ingreds(allrecipes):
+
+    print '--------'
+    recipes = [r['ingredientsParsed'] for r in allrecipes if not [ing for ing in r['ingredientsParsed'] if 'name' not in ing]]
+    
+    ingreds = []
+    for r in recipes:
+        for ing in r:
+            if 'name' in ing:
+                ingreds.append(ing['name'])
+
+    # ingreds = [ing['name'] for ing in r for r in recipes if 'name' in ing]
+    ings = list(set(ingreds))
+    print ings
+    all_ingreds = [ing for ing in ings if ingreds.count(ing) > 1]
+    print '--------'
+    print all_ingreds
+    print '--------'
+    for r0 in allrecipes:
+        r = r0['ingredientsParsed']
+        keep_r = True
+        for ing in r:
+            # if 'comment' in ing and ing['comment']:
+            #     print ing['comment']
+            #     keep_r = False
+            #     continue
+            if 'name' not in ing:
+                keep_r = False
+                continue
+            if ing['name'] not in all_ingreds:
+                keep_r = False
+                continue
+            if 'qty' not in ing:
+                keep_r = False
+                continue
+        if keep_r:
+            print '______'
+            # print r
+            for ing in r:
+                keys = ['name', 'qty', 'unit']
+                print ', '.join([ing[k] for k in ing if k in keys])
+    rs = [r for r in recipes if all([ing['name'] in all_ingreds for ing in r if 'name' in ing])]
+    return
+
 def parse_recipes(infile, outfile=None):
     with open(infile) as f:
         recipes = json.load(f)
-    print recipes[0].keys()
+    print recipes[0]['ingredientLines']
     recipes = parse_ingreds(recipes)
+    # recipe_ingreds(recipes)
+    # return
     recipes = [get_simple_recipe(recipe) for recipe in recipes]
     print json.dumps(recipes[0], indent=4)
     if outfile is None:
@@ -85,15 +132,61 @@ def parse_recipes(infile, outfile=None):
         json.dump(recipes, f, indent=4)
     return recipes
 
-def recipe_ratios(infile, outfile):
+def show_ings(ings):
+    print '--------'
+    for ing in ings:
+        if 'has_error' in ing:
+            ing.pop('has_error')
+        if 'input' in ing:
+            inp = ing.pop('input')
+            print inp
+        print ing
+
+def parse_recipes_simple(infile, outfile=None):
     with open(infile) as f:
         recipes = json.load(f)
-    
+    rs = []
+    for r in recipes:
+        ings = []
+        for ing in r['ingredientLines']:
+            ings.append(parser.simple(ing))
+        keep = not(any([ing['has_error'] for ing in ings]))
+        if keep:
+            show_ings(ings)
+            r['ingredientsParsed'] = ings
+            rs.append(r)
+
+    # get master list of all ings
+    all_ings = []
+    for r in rs:
+        if 'ingredientsParsed' not in r:
+            continue
+        ings = r['ingredientsParsed']
+        all_ings.extend([i['name'] for i in ings])
+    ings_set = list(set(all_ings))
+    counts = dict([(ing, all_ings.count(ing)) for ing in ings_set])
+
+    # print recipes with non-unique ings
+    for r in rs:
+        if 'ingredientsParsed' not in r:
+            continue
+        ings = r['ingredientsParsed']
+        ignore = [i['name'] for i in ings if counts[i['name']] <= 1]
+        if not ignore:
+            show_ings(ings)
+        else:
+            print 'IGNORING because ' + ', '.join(ignore)
+
+    if outfile is None:
+        return recipes
+    with open(outfile, 'w') as f:
+        json.dump(recipes, f, indent=4)
     return recipes
 
 if __name__ == '__main__':
-    # gather_recipes('chocolate chip cookies', 'data/choc-chip-cookies.json')
-    parse_recipes('data/choc-chip-cookies.json', 'data/choc-chip-cookies_clean.json')
+    # gather_recipes('chocolate chip cookies', 'rawdata/choc-chip-cookies.json')
+    # parse_recipes('rawdata/choc-chip-cookies.json', 'rawdata/choc-chip-cookies_clean.json')
+    parse_recipes_simple('rawdata/choc-chip-cookies.json')
 
-    # gather_recipes('yellow cake', 'data/yellow-cake.json')
-    # parse_recipes('data/yellow-cake.json', 'data/yellow-cake_clean2.json')
+    # gather_recipes('yellow cake', 'rawdata/yellow-cake.json')
+    # parse_recipes('rawdata/yellow-cake.json', 'rawdata/yellow-cake_clean2.json')
