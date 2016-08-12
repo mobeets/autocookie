@@ -12,6 +12,7 @@ UNIT_LOOKUP = {
     'ozs.': 'ounces',
     'ounce': 'ounces',
     'ounces': 'ounces',
+    'C': 'cup',
     'c': 'cup',
     'cup': 'cup',
     'cups': 'cup',
@@ -32,7 +33,7 @@ UNIT_LOOKUP = {
     'package': 'package',
     'can': 'package',
 }
-STOPWORDS = ['small', 'medium', 'creamy', 'large', 'of', 'packed', 'chopped', 'mini', 'softened', 'pure', 'firmly', 'melted', 'slightly', 'cooled', 'granulated', 'cut', 'lightly', 'grated', 'into', 'and', 'vegan', 'caster', 'refined', 'semisweet', 'kosher', 'natural', 'coarse', 'coarsely']
+STOPWORDS = ['small', 'medium', 'creamy', 'large', 'of', 'packed', 'chopped', 'mini', 'softened', 'pure', 'firmly', 'melted', 'slightly', 'cooled', 'granulated', 'cut', 'lightly', 'grated', 'into', 'and', 'vegan', 'caster', 'refined', 'semisweet', 'kosher', 'natural', 'coarse', 'coarsely', 'crunchy', 'light', 'high-quality', 'smooth', 'beaten', 'dark']
 
 def frac_from_str(num):
     num = num.strip()
@@ -75,10 +76,11 @@ def simple(line):
     line = line.replace(u'\xbe', ' 3/4')
     line = line.replace(u'\xbd', ' 1/2')
     line = line.replace(u'\xbc', ' 1/4')
-    line = unidecode(line).lower()
+    line = unidecode(line)
     line = remove_parens(line)
     nums, line = read_until_numbers_end(line)
     units, line = read_until_units_found(line)
+    line = line.lower()
     line = remove_stop_words(line)
     line = remove_punctuation(line)
     has_error = get_errors(line)

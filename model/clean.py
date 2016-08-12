@@ -55,14 +55,11 @@ def parse_and_prune_recipes(infile, outfile=None):
     rs = prune_recipes_with_unique_items(rs, counts, max_unique=1)
 
     # print recipes with non-unique ings
-    for r in rs:
-        show_ings(r['ingredientsParsed'])
-
-    if outfile is None:
-        return recipes
-    with open(outfile, 'w') as f:
-        json.dump(recipes, f, indent=4)
-    return recipes
+    # for r in rs:
+    #     show_ings(r['ingredientsParsed'])
+    return json.dumps(rs)
 
 if __name__ == '__main__':
-    parse_and_prune_recipes('rawdata/choc-chip-cookies.json')
+    import sys
+    infile = sys.argv[1]
+    print parse_and_prune_recipes(infile)
