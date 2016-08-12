@@ -5,6 +5,7 @@ var curRecipe;
 var curFood;
 var maxValDefault = 20;
 var stepSizeDefault = 1; // tsp
+var epsilon = 0.0001;
 
 function copyForModifying(recipe) {
   obj = $.extend(true, {}, recipe);
@@ -56,12 +57,12 @@ function setProgressBar(item, startVal, endVal) {
   pctStart = valToPercent(startVal, maxVal);
   pctEnd = valToPercent(endVal, maxVal);
   pctEnd = Math.max(0, pctEnd - pctStart);
-  if (endVal - startVal < 0.2 && endVal >= startVal) {
+  if (endVal - startVal < 0.2 && endVal >= startVal-epsilon) {
     // add padding for otherwise-invisible percentages
     pctEnd += 1;
   }
 
-  if (endVal >= startVal) {
+  if (endVal >= startVal-epsilon) {
     bar.children('.progress-bar-start').css('width', pctStart.toString() + '%');
     bar.children('.progress-bar-filled').css('width', pctEnd.toString() + '%');
   } else {

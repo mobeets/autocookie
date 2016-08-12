@@ -151,11 +151,16 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         bMax = aVal/mnRatio;
         bMin = aVal/mxRatio;
 
+        // console.log([aNm, bNm]);
+
         if ($.inArray(aNm, uningreds) === -1 && $.inArray(bNm, uningreds) === -1) {
             allMins[aNm].push(aMin);
             allMaxs[aNm].push(aMax);
             allMins[bNm].push(bMin);
             allMaxs[bNm].push(bMax);
+            // if (aNm === "chocolate chips" || bNm == "chocolate chips") {
+            //     console.log([aNm, aMin, aMax, bNm, bMin, bMax]);
+            // }
         }
     }
     
@@ -173,6 +178,7 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         } else {
             mx = getMinOfArray(mxs);
         }
+        // console.log([ingreds[i], mns, mxs]);
         validRanges[ingreds[i]] = [mn, mx];
     }
     // console.log(validRanges);
