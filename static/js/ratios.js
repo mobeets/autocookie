@@ -192,11 +192,11 @@ function markOutOfBoundsIngredients(recipe, validRanges) {
         val = recipe[$.inArray(nm, ingreds)].qtyRaw;
         mn = validRanges[nm][0];
         mx = validRanges[nm][1];
-        if (mn > mx) {
+        if (mn > mx+epsilon) {
             glyphId = 'ban-circle';
-        } else if (val < mn) {
+        } else if (val < mn-epsilon) {
             glyphId = 'arrow-up';
-        } else if (val > mx) {
+        } else if (val > mx+epsilon) {
             glyphId = 'arrow-down';
         } else {
             glyphId = '';
