@@ -274,13 +274,13 @@ var cookieRecipes = [
 
 var allRecipes = [
     {
-        "name": "yellow cake",
-        "key": "yellow-cake",
-        "recipes": cakeRecipes,
-    },
-    {
         "name": "chocolate chip cookies",
         "key": "choc-chip-cookies",
         "recipes": cookieRecipes,
+    },
+    {
+        "name": "yellow cake",
+        "key": "yellow-cake",
+        "recipes": cakeRecipes,
     },
 ];

@@ -18,7 +18,7 @@ function valueToFractionalString(value) {
     return (new Fraction(roundedValue)).toString();
 }
 
-function formatMeasurement(value, unit) {
+function rawQtyToQty(value, unit) {
     if (unit.length > 0) {
         switch (unit) {
             case 'cup':
@@ -27,13 +27,17 @@ function formatMeasurement(value, unit) {
                 value /= 3;
         }
     }
-    return valueToFractionalString(value);
+    return value;
 }
 
-function addRawQty(item) { // tsp.
-    qtyRaw = item.qty;
+function formatMeasurement(value, unit) {
+    return valueToFractionalString(rawQtyToQty(value, unit));
+}
+
+function qtyToRawQty(value, unit) { // tsp.
+    qtyRaw = value;
     // switch runs til break, so cup will hit Tbsp
-    switch (item.unit) {
+    switch (unit) {
         case 'cup':
             qtyRaw *= 16;
         case 'Tbsp':
@@ -44,7 +48,7 @@ function addRawQty(item) { // tsp.
 
 function addRawQtys(recipe) {
     for (var i=0; i<recipe.length; i++) {
-        recipe[i].qtyRaw = addRawQty(recipe[i]);
+        recipe[i].qtyRaw = qtyToRawQty(recipe[i].qty, recipe[i].unit);
     }
     return recipe;
 }
@@ -98,7 +102,6 @@ function exportRecipe() {
         lines.push(msg);
     }
     urls = [];
-    console.log(food.recipes);
     for (var i=0; i< food.recipes.length; i++) {
         msg = '<a href="' + food.recipes[i].url + '">' + (i+1).toString() + '</a>';
         urls.push(msg);
@@ -129,26 +132,6 @@ function findSingleIngreds(recipes) {
     }
     return ones;
 }
-
-// function allRatioRanges0(recipes) {
-//     allRatios = getAllRatios(recipes);
-//     minRatios = [];
-//     maxRatios = [];
-//     for (var i=0; i<allRatios.length; i++) {
-//         cur = allRatios[i];
-//         name = cur.name;
-//         if (name in minRatios) {
-//             minRatios[name] = Math.min(cur.r, minRatios[name]);
-//             maxRatios[name] = Math.max(cur.r, maxRatios[name]);
-//         } else {
-//             minRatios[name] = cur.r;
-//             maxRatios[name] = cur.r;
-//         }
-//     }
-//     console.log(minRatios);
-//     console.log(maxRatios);
-//     return {"min": minRatios, "max": maxRatios};
-// }
 
 function allRatioRanges(recipes) {
     allRatios = getAllRatios(recipes);
@@ -279,6 +262,63 @@ function markOutOfBoundsIngredients(recipe, validRanges) {
         // console.log([nm, mn, mx, glyphId, glyph]);
         $('#item-' + nm.replace(" ", "-") + ' .glyphs').html(glyph);
     }
+}
+
+function randperm(maxValue){
+    // first generate number sequence
+    var permArray = new Array(maxValue);
+    for(var i = 0; i < maxValue; i++){
+        permArray[i] = i;
+    }
+    // draw out of the number sequence
+    for (var i = (maxValue - 1); i >= 0; --i){
+        var randPos = Math.floor(i * Math.random());
+        var tmpStore = permArray[i];
+        permArray[i] = permArray[randPos];
+        permArray[randPos] = tmpStore;
+    }
+    return permArray;
+}
+
+function getRandomNearStep(min, max, item) {
+    newMin = rawQtyToQty(min, item.unit);
+    newMax = rawQtyToQty(max, item.unit);
+    samp = Math.random() * (newMax - newMin) + newMin;
+
+    // need to know units for this to work better
+    var tries = [1, 2, 4, 8];
+    var tryInds = randperm(tries.length);
+    roundedValue = nearestMultiple(samp, 1, tries[tryInds[0]]);
+    i = 0;
+    while ((roundedValue <= newMin || roundedValue >= newMax) && i < tries.length-1) {
+        i += 1;
+        roundedValue = nearestMultiple(samp, 1, tries[tryInds[i]]);
+    }
+    if (roundedValue < newMin || roundedValue > newMax) {
+        roundedValue = samp;
+    }
+    finalVal = qtyToRawQty(roundedValue, item.unit);
+    // console.log([item.name, item.unit, min, max, newMin, newMax, samp, roundedValue, finalVal, tries[tryInds[i]]]);
+    return finalVal;
+}
+
+function autoRecipe(recipe, validRanges) {
+    var ingreds = getIngredsInRecipe(recipe);
+    var inds = randperm(ingreds.length);
+    for (var i=0; i<inds.length; i++) {
+        var curInd = inds[i];
+        var item = recipe[curInd];
+        var nm = item.name;
+        var curVal = getRandomNearStep(validRanges[nm][0], validRanges[nm][1], item);
+
+        // set trigger and update value in this really janky way
+        var ind = curInd.toString();
+        var slideSel = $('#slider' + ind);
+        slideSel.slider("value", curVal);
+        updateSlider(curRecipe, curInd, slideSel.slider("value"), '#val'+ind, '#unit'+ind, ranges);
+        // console.log([nm, validRanges[nm][0], validRanges[nm][1], slideSel.slider("value"), curVal]);
+    }
+
 }
 
 function writeRanges(recipe, validRanges) {

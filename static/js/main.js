@@ -3,6 +3,7 @@ var curRecipes = [];
 var ranges;
 var curRecipe;
 var curFood;
+var curFoodInd;
 var maxValDefault = 20;
 var stepSizeDefault = 1; // tsp
 var epsilon = 0.0001;
@@ -95,6 +96,12 @@ function updateMeasurement(value, unit, valSel, unitSel) {
   $(unitSel).text(unit);
 }
 
+function updateSlider(curRecipe, itemInd, val, valSel, unitSel, ranges) {
+  updateMeasurement(val, curRecipe[itemInd].unit, valSel, unitSel);
+  curRecipe[itemInd].qtyRaw = val;
+  checkOutOfBoundsIngredients(curRecipe, ranges);
+}
+
 function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
   maxVal = getMaxVal(item.name);
   stepSize = getStepSize(item.unit);
@@ -104,14 +111,11 @@ function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
     max: maxVal,
     step: stepSize,
     slide: function(event, ui) {
-      updateMeasurement(ui.value, curRecipe[itemIndex].unit, valSel, unitSel);
-      // update value in recipe
-      curRecipe[itemIndex].qtyRaw = ui.value;
-      checkOutOfBoundsIngredients(curRecipe, ranges);
+      updateSlider(curRecipe, itemIndex, ui.value, valSel, unitSel, ranges);
     }
   });
   val = $(slideSel).slider("value");
-  updateMeasurement(val, item.unit, valSel, unitSel);
+  updateSlider(curRecipe, itemIndex, val, valSel, unitSel, ranges);
 }
 
 function initIngredient(item, i) {
@@ -161,19 +165,22 @@ function initRecipePresets(recipes) {
 }
 
 function initFood(ind) {
-  food = allRecipes[ind];
+  food = allRecipes[ind-1];
   $('.food-name').text(food.name);
   prepRecipeData(food.recipes);
   initRecipePresets(curRecipes);
   curFood = food;
+  curFoodInd = ind;
   $('#recipe-1').click();
+  autoRecipe(curRecipe, validRanges);
+  $('.recipe-preset').removeClass('active');
 }
 
 function selectFood(event) {
   $('.food-preset').removeClass('active');
   $(this).addClass('active');
   curId = $(this)[0].id;
-  ind = curId.split('food-')[1]-1;
+  ind = curId.split('food-')[1];
   initFood(ind);  
 }
 
@@ -205,7 +212,11 @@ function prepRecipeData(newRecipes) {
     curRecipes.push(newRecipes[i].ingredients);
   }
   curRecipes = addAllRawQtys(curRecipes);
-  ranges = allRatioRanges(curRecipes);  
+  ranges = allRatioRanges(curRecipes);
+}
+
+function autoRecipeClick() {
+  $('#food-' + curFoodInd).click();
 }
 
 function init() {
@@ -213,6 +224,7 @@ function init() {
   initFoodPresets();
   $('#food-1').click();
   $('#export').click(function(){$('#output').html(exportRecipe())});
+  $('#randomize').click(autoRecipeClick);
 }
 
 $(document).ready(init);

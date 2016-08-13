@@ -1,7 +1,7 @@
 <html>
 <head>
 
-    <title>Autocake</title>
+    <title>Autocookie</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -27,7 +27,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a id="navwords" class="navbar-brand" href="#">Autocake</a>
+      <a id="navwords" class="navbar-brand" href="#">Autocookie</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav pull-right">
@@ -41,7 +41,7 @@
 <div id="header-container" class="container">
 
   <div class="starter-template">
-    <h1>Autocake</h1>
+    <h1>Autocookie</h1>
   </div>
   <div class="row">
     <div class="col-lg-16 introduction text-center">
@@ -63,16 +63,18 @@
     <div class="col-lg-2"></div>
     <div id="shop" class="col-lg-12">
       <div class="row">
-        <span class="col-lg-offset-2 col-lg-8">Create a new recipe by adjusting the ingredient amounts. Disable the effect of an ingredient on others by clicking on its blue bar. <span class="glyphicon glyphicon-question-sign help-info" aria-hidden="true"></span> <span class="more-info"><p>The <span class="blue-bar-text">blue bar</span> above each ingredient tells you the suggested minimum and maximum ingredient levels. These levels are based on the ratios between the amount of one ingredient and every other ingredient, as learned from the recipe templates listed below. If you fall out of this range, <span class="glyphicon glyphicon-arrow-up"></span> or a <span class="glyphicon glyphicon-arrow-down"></span> will point the way back.</p><p>Sometimes, you'll see a <span class="glyphicon glyphicon-ban-circle"></span> next to an ingredient. This means other ingredients need to be adjusted in order to bring this ingredient back in range.</p></span>
+        <span class="col-lg-offset-2 col-lg-8">Create a new recipe by pressing adjusting the ingredient amounts below, or by pressing "Randomize". <span class="glyphicon glyphicon-question-sign help-info" aria-hidden="true"></span> <span class="more-info"><p>The <span class="blue-bar-text">blue bar</span> above each ingredient tells you the suggested minimum and maximum ingredient levels. These levels are based on the ratios between the amount of one ingredient and every other ingredient, as learned from the recipe templates listed below. If you fall out of this range, <span class="glyphicon glyphicon-arrow-up"></span> or a <span class="glyphicon glyphicon-arrow-down"></span> will point the way back.</p><p>Sometimes, you'll see a <span class="glyphicon glyphicon-ban-circle"></span> next to an ingredient. This means other ingredients need to be adjusted in order to bring this ingredient back in range. Disable the effect of an ingredient on others by clicking on its blue bar.</p></span>
       </div>
       <div class="row ingredients text-center">
       </div>
       <div class="suggestions col-lg-12">
         <div class="row text-center">
+          <button type="button" class="btn btn-default btn-success"><span id="randomize">Randomize</span></button>
           <button type="button" class="btn btn-default btn-warning"><span id="export">Export</span></button>
         </div>
+        <div class="errors"></div>
         <div class="row col-lg-offset-4 col-lg-4">
-          <div id="output" class="errors"></div><hr>
+          <div id="output"></div><hr>
         </div>
         <div class="col-lg-offset-2 col-lg-8 text-center">
           Recipe templates for <span class="food-name"></span>:
@@ -81,7 +83,7 @@
             </ul>
           </div>
         </div>
-      </div>      
+      </div>
       </div>
     </div>
   </div>
