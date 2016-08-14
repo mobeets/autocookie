@@ -261,6 +261,48 @@ var cookieRecipes = [
 var pbCookies = [
   {
     "ingredientLines": [
+      "1 cup peanut butter (any kind you like-storebought, homemade, natural, smooth, chunky, etc.)",
+      "1\/2 cup brown sugar",
+      "1\/2 cup granulated sugar",
+      "1 egg",
+      "1 tsp. baking soda"
+    ],
+    "name": "Flourless Peanut Butter Cookies",
+    "ingredients": [
+      {
+        "name": "peanut butter",
+        "unit": "cup",
+        "qty": 1
+      },
+      {
+        "name": "brown sugar",
+        "unit": "cup",
+        "qty": 0.5
+      },
+      {
+        "name": "sugar",
+        "unit": "cup",
+        "qty": 0.5
+      },
+      {
+        "name": "egg",
+        "unit": "",
+        "qty": 1
+      },
+      {
+        "name": "baking soda",
+        "unit": "tsp",
+        "qty": 1
+      }
+    ],
+    "url": "http:\/\/www.cookingactress.com\/2014\/12\/flourless-peanut-butter-cookies.html",
+    "url_ymly": "http:\/\/www.yummly.com\/recipe\/Flourless-Peanut-Butter-Cookies-1799937",
+    "yld": "makes about 52 small cookies",
+    "num": 26,
+    "id": "Flourless-Peanut-Butter-Cookies-1799937"
+  },
+  {
+    "ingredientLines": [
       "1\/2 cup butter, softened",
       "1 cup peanut butter",
       "3\/4 cup white sugar",
@@ -702,48 +744,6 @@ var pbCookies = [
     "yld": "2 dozen cookies",
     "num": 12,
     "id": "Classic-Peanut-Butter-Cookies-1693279"
-  },
-  {
-    "ingredientLines": [
-      "1 cup peanut butter (any kind you like-storebought, homemade, natural, smooth, chunky, etc.)",
-      "1\/2 cup brown sugar",
-      "1\/2 cup granulated sugar",
-      "1 egg",
-      "1 tsp. baking soda"
-    ],
-    "name": "Flourless Peanut Butter Cookies",
-    "ingredients": [
-      {
-        "name": "peanut butter",
-        "unit": "cup",
-        "qty": 1
-      },
-      {
-        "name": "brown sugar",
-        "unit": "cup",
-        "qty": 0.5
-      },
-      {
-        "name": "sugar",
-        "unit": "cup",
-        "qty": 0.5
-      },
-      {
-        "name": "egg",
-        "unit": "",
-        "qty": 1
-      },
-      {
-        "name": "baking soda",
-        "unit": "tsp",
-        "qty": 1
-      }
-    ],
-    "url": "http:\/\/www.cookingactress.com\/2014\/12\/flourless-peanut-butter-cookies.html",
-    "url_ymly": "http:\/\/www.yummly.com\/recipe\/Flourless-Peanut-Butter-Cookies-1799937",
-    "yld": "makes about 52 small cookies",
-    "num": 26,
-    "id": "Flourless-Peanut-Butter-Cookies-1799937"
   },
   {
     "ingredientLines": [

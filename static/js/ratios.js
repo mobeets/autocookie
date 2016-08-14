@@ -343,7 +343,7 @@ function autoRecipe() {
     recipe = curRecipe;
     var ingreds = getIngredsInRecipe(recipe);
 
-    var maxTries = 5;
+    var maxTries = 10;
     var curTry = 0;
     while (curTry < maxTries && !allValid) {
         var allValid = true;
@@ -356,7 +356,6 @@ function autoRecipe() {
             var item = recipe[curInd];
             var nm = item.name;
             var curVal = getRandomNearStep(validRanges[nm][0], validRanges[nm][1], item);
-            console.log([nm, curVal, validRanges[nm][0], validRanges[nm][1]]);
 
             // set trigger and update value in this really janky way
             var ind = curInd.toString();
@@ -367,7 +366,6 @@ function autoRecipe() {
             if (!allValid) {
                 break;
             }
-            // console.log([nm, validRanges[nm][0], validRanges[nm][1], slideSel.slider("value"), curVal]);
         }
     }
 
@@ -391,7 +389,7 @@ function checkOutOfBoundsIngredients(recipe, ranges) {
     // console.log(recipe);
     setDeselecteds(ranges);
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
-    writeRanges(recipe, validRanges);
+    // writeRanges(recipe, validRanges);
     allValid = markOutOfBoundsIngredients(recipe, validRanges);
     setProgressBars(recipe, validRanges);
     $('#output').html('');
