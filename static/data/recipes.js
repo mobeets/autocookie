@@ -1,3 +1,4 @@
+
 var defaultStepSizes = [
     {'unit': 'tsp', 'stepSizeTsp': 0.125},
     {'unit': 'Tbsp', 'stepSizeTsp': 1.5},
@@ -363,7 +364,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "vanilla extract",
+        "name": "vanilla",
         "unit": "tsp",
         "qty": 1
       },
@@ -564,12 +565,12 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "pinch salt",
-        "unit": "",
-        "qty": 1
+        "name": "salt",
+        "unit": "tsp",
+        "qty": 0.125
       },
       {
-        "name": "vanilla extract",
+        "name": "vanilla",
         "unit": "tsp",
         "qty": 1
       }
@@ -618,7 +619,7 @@ var pbCookies = [
         "qty": 3
       },
       {
-        "name": "vanilla extract",
+        "name": "vanilla",
         "unit": "tsp",
         "qty": 1
       },
@@ -663,7 +664,7 @@ var pbCookies = [
         "qty": 0.25
       },
       {
-        "name": "unsalted butter",
+        "name": "butter",
         "unit": "cup",
         "qty": 0.5
       },
@@ -709,7 +710,7 @@ var pbCookies = [
     "name": "Classic Peanut Butter Cookies",
     "ingredients": [
       {
-        "name": "unsalted butter",
+        "name": "butter",
         "unit": "cup",
         "qty": 0.5
       },
@@ -729,7 +730,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "vanilla extract",
+        "name": "vanilla",
         "unit": "tsp",
         "qty": 1
       },
@@ -762,48 +763,6 @@ var pbCookies = [
   },
   {
     "ingredientLines": [
-      "1 cup creamy peanut butter",
-      "1 cup firmly packed brown sugar",
-      "1 large egg",
-      "1 teaspoon baking soda",
-      "*dark chocolate for drizzling"
-    ],
-    "name": "Four-Ingredient Chewy Peanut Butter Cookies",
-    "ingredients": [
-      {
-        "name": "peanut butter",
-        "unit": "cup",
-        "qty": 1
-      },
-      {
-        "name": "brown sugar",
-        "unit": "cup",
-        "qty": 1
-      },
-      {
-        "name": "egg",
-        "unit": "",
-        "qty": 1
-      },
-      {
-        "name": "baking soda",
-        "unit": "tsp",
-        "qty": 1
-      },
-      {
-        "name": "dark chocolate for drizzling",
-        "unit": "",
-        "qty": 0
-      }
-    ],
-    "url": "http:\/\/www.culinarycoutureblog.com\/2013\/01\/four-ingredient-chewy-peanut-butter-cookies.html",
-    "url_ymly": "http:\/\/www.yummly.com\/recipe\/Four-Ingredient-Chewy-Peanut-Butter-Cookies-1804324",
-    "yld": "yield: 1 dozen small cookies",
-    "num": 6,
-    "id": "Four-Ingredient-Chewy-Peanut-Butter-Cookies-1804324"
-  },
-  {
-    "ingredientLines": [
       "1 cup peanut butter",
       "1 cup packed brown sugar",
       "1 egg",
@@ -833,7 +792,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "semi-sweet chocolate chips",
+        "name": "chocolate chips",
         "unit": "cup",
         "qty": 0.75
       }
@@ -857,7 +816,7 @@ var pbCookies = [
     "name": "Flourless Peanut Butter Chocolate Chip Cookies",
     "ingredients": [
       {
-        "name": "peanut butter creamy",
+        "name": "peanut butter",
         "unit": "cup",
         "qty": 1
       },
@@ -882,12 +841,12 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "vanilla extract",
+        "name": "vanilla",
         "unit": "tsp",
         "qty": 1
       },
       {
-        "name": "semi-sweet chocolate chips",
+        "name": "chocolate chips",
         "unit": "cup",
         "qty": 1
       }
@@ -948,7 +907,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "vanilla extract",
+        "name": "vanilla",
         "unit": "tsp",
         "qty": 1
       },
@@ -1007,9 +966,9 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "pinch salt",
-        "unit": "",
-        "qty": 0
+        "name": "salt",
+        "unit": "tsp",
+        "qty": 0.125
       }
     ],
     "url": "http:\/\/inspirationformoms.porch.com\/2016\/03\/the-best-peanut-butter-cookies.html",
@@ -1081,7 +1040,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "vanilla extract",
+        "name": "vanilla",
         "unit": "tsp",
         "qty": 0.5
       },
@@ -1248,7 +1207,7 @@ var pbCookies = [
       {
         "name": "brown sugar",
         "unit": "cup",
-        "qty": 0.66666666666667
+        "qty": 2/3
       },
       {
         "name": "vanilla",
@@ -1263,7 +1222,7 @@ var pbCookies = [
       {
         "name": "rolled oats",
         "unit": "cup",
-        "qty": 0.66666666666667
+        "qty": 2/3
       },
       {
         "name": "baking soda",
@@ -1273,7 +1232,7 @@ var pbCookies = [
       {
         "name": "chocolate chips",
         "unit": "cup",
-        "qty": 0.66666666666667
+        "qty": 2/3
       }
     ],
     "url": "http:\/\/www.primaverakitchen.com\/healthy-peanut-butter-oatmeal-cookies\/",
@@ -1408,11 +1367,6 @@ var pbCookies = [
         "unit": "cup",
         "qty": 1.25
       },
-      {
-        "name": "sugar",
-        "unit": "",
-        "qty": 0
-      }
     ],
     "url": "http:\/\/www.bhg.com\/recipe\/cookies\/classic-peanut-butter-cookies\/",
     "url_ymly": "http:\/\/www.yummly.com\/recipe\/Classic-Peanut-Butter-Cookies-1519683",
@@ -1521,7 +1475,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.5
       }, 
@@ -1610,7 +1564,7 @@ var sugarCookies = [
     "name": "Sugar Cookies", 
     "ingredients": [
       {
-        "name": "unsalted butter", 
+        "name": "butter", 
         "unit": "cup", 
         "qty": 0.5
       }, 
@@ -1625,7 +1579,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.0
       }, 
@@ -1755,12 +1709,12 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.0
       }, 
       {
-        "name": "assorted sprinkles", 
+        "name": "sprinkles", 
         "unit": "", 
         "qty": 0.0
       }
@@ -1784,7 +1738,7 @@ var sugarCookies = [
     "name": "Apple Sugar Back to School Cookies", 
     "ingredients": [
       {
-        "name": "unsalted butter", 
+        "name": "butter", 
         "unit": "cup", 
         "qty": 1.0
       }, 
@@ -1799,7 +1753,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.0
       }, 
@@ -1839,9 +1793,9 @@ var sugarCookies = [
     "name": "Chewy Sugar Cookies", 
     "ingredients": [
       {
-        "name": "sticks unsalted butter", 
-        "unit": "", 
-        "qty": 2.0
+        "name": "butter", 
+        "unit": "cup", 
+        "qty": 1.0
       }, 
       {
         "name": "sugar", 
@@ -1913,7 +1867,7 @@ var sugarCookies = [
         "qty": 2.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 2.0
       }, 
@@ -1961,10 +1915,10 @@ var sugarCookies = [
       {
         "name": "shortening", 
         "unit": "cup", 
-        "qty": 0.3333333333333333
+        "qty": 1/3
       }, 
       {
-        "name": "unsalted butter", 
+        "name": "butter", 
         "unit": "Tbsp", 
         "qty": 6.0
       }, 
@@ -1979,7 +1933,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.0
       }, 
@@ -2048,7 +2002,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.0
       }
@@ -2072,7 +2026,7 @@ var sugarCookies = [
     "name": "Sugar Cookies", 
     "ingredients": [
       {
-        "name": "unsalted butter", 
+        "name": "butter", 
         "unit": "cup", 
         "qty": 0.5
       }, 
@@ -2087,7 +2041,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.0
       }, 
@@ -2136,9 +2090,9 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "sticks unsalted butter", 
-        "unit": "", 
-        "qty": 2.0
+        "name": "butter", 
+        "unit": "cup", 
+        "qty": 1.0
       }, 
       {
         "name": "confectioners sugar", 
@@ -2210,7 +2164,7 @@ var sugarCookies = [
         "qty": 2.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.0
       }
@@ -2248,7 +2202,7 @@ var sugarCookies = [
         "qty": 2.0
       }, 
       {
-        "name": "vanilla essence", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 1.0
       }, 
@@ -2307,14 +2261,14 @@ var sugarCookies = [
         "qty": 2.0
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 2.0
       }, 
       {
-        "name": "unsweetened cocoa powder", 
+        "name": "cocoa powder", 
         "unit": "cup", 
-        "qty": 0.6666666666666666
+        "qty": 2/3
       }
     ], 
     "url": "http://www.orwhateveryoudo.com/2014/02/chocolate-sugar-cookies.html", 
@@ -2335,24 +2289,24 @@ var sugarCookies = [
     "name": "Sugar Cookies", 
     "ingredients": [
       {
-        "name": "sticks butter", 
-        "unit": "", 
-        "qty": 2.0
+        "name": "butter", 
+        "unit": "cup", 
+        "qty": 1.0
       }, 
       {
         "name": "sugar", 
         "unit": "cup", 
-        "qty": 0.6666666666666666
+        "qty": 2/3
       }, 
       {
-        "name": "vanilla extract", 
+        "name": "vanilla", 
         "unit": "tsp", 
         "qty": 2.0
       }, 
       {
         "name": "milk", 
         "unit": "cup", 
-        "qty": 0.3333333333333333
+        "qty": 1/3
       }, 
       {
         "name": "all-purpose flour", 
@@ -2360,7 +2314,7 @@ var sugarCookies = [
         "qty": 3.0
       }, 
       {
-        "name": "sugar sprinkles any color", 
+        "name": "sprinkles", 
         "unit": "", 
         "qty": 0.0
       }
@@ -2370,91 +2324,7 @@ var sugarCookies = [
     "yld": "40 cookies", 
     "num": 20, 
     "id": "Sugar-Cookies-709426"
-  }, 
-  {
-    "ingredientLines": [
-      "1 1/2 cups butter, softened", 
-      "2 cups white sugar", 
-      "4 eggs", 
-      "1 teaspoon vanilla extract", 
-      "5 cups all-purpose flour", 
-      "2 teaspoons baking powder", 
-      "1 teaspoon salt", 
-      "4 cups confectioners' sugar", 
-      "1/2 cup butter", 
-      "5 tablespoons milk", 
-      "1 teaspoon vanilla extract", 
-      "food coloring"
-    ], 
-    "name": "Sugar Cookies", 
-    "ingredients": [
-      {
-        "name": "butter", 
-        "unit": "cup", 
-        "qty": 1.5
-      }, 
-      {
-        "name": "white sugar", 
-        "unit": "cup", 
-        "qty": 2.0
-      }, 
-      {
-        "name": "eggs", 
-        "unit": "", 
-        "qty": 4.0
-      }, 
-      {
-        "name": "vanilla extract", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "all-purpose flour", 
-        "unit": "cup", 
-        "qty": 5.0
-      }, 
-      {
-        "name": "baking powder", 
-        "unit": "tsp", 
-        "qty": 2.0
-      }, 
-      {
-        "name": "salt", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "confectioners sugar", 
-        "unit": "cup", 
-        "qty": 4.0
-      }, 
-      {
-        "name": "butter", 
-        "unit": "cup", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "milk", 
-        "unit": "Tbsp", 
-        "qty": 5.0
-      }, 
-      {
-        "name": "vanilla extract", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "food coloring", 
-        "unit": "", 
-        "qty": 0.0
-      }
-    ], 
-    "url": "http://sweetcakesbakeshop.blogspot.com/2008/10/halloween-sugar-cookies.html", 
-    "url_ymly": "http://www.yummly.com/recipe/Sugar-Cookies-1758955", 
-    "yld": null, 
-    "num": 4, 
-    "id": "Sugar-Cookies-1758955"
-  }, 
+  },
   {
     "ingredientLines": [
       "5 cups flour", 

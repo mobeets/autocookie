@@ -30,7 +30,9 @@ function nearestMultiple(number, numerator, denominator) {
 
 function valueToFractionalString(value) {
     // requires fraction-0.3.js
-    roundedValue = nearestMultiple(value, 1, 16);
+    var roundedValue = nearestMultiple(value, 1, 16);
+    if (Math.abs(value - 1/3) < 0.01) { return "1/3"; }
+    if (Math.abs(value - 2/3) < 0.01) { return "2/3"; }
     return (new Fraction(roundedValue)).toString();
 }
 
@@ -115,7 +117,7 @@ function closestRecipe(recipes) {
     minVal = dfs.ds[dfs.minInd];
     pctStr = Math.round(100*(minVal/nrm)).toString() + '%';
     indStr = (minInd+1).toString();
-    return 'Your recipe is at least ' + pctStr + ' different from the template recipes below. It is most similar to <a href="' + url + '">this</a> recipe.';
+    return '<p>Your recipe is at least ' + pctStr + ' different from the template recipes below. It is most similar to <a href="' + url + '">this</a> recipe.</p><p>If you make this recipe, please <a href="https://twitter.com/jehosafet">let me know</a> how it turned out!</p>';
     // 'ecipe #' + indStr + " is " + pctStr + ' different (' + minVal.toFixed(2) + ", " + nrm.toFixed(2) + ')';
     // return inds.join(', ');
 }
@@ -169,14 +171,14 @@ function exportRecipe() {
         urls.push(msg);
     }
     helpMsg = ' (For additional instructions, see these recipes for guidelines: ' + urls.join(', ') + '.)';
-    lines.push('<br>' + curFood.instructions + helpMsg);
-    lines.push('<br>' + closestRecipe(curRecipes));
+    lines.push('<br>' + curFood.instructions + helpMsg + '<br>');
+    lines.push(closestRecipe(curRecipes));
     // temp = 350; mins = 8;
     // lines.push('<br>Bake at ' + temp.toString() + 'F for ' + mins.toString() + ' minutes');
     return lines.join('<br>');
 }
 
-function findSingleIngreds(recipes) {
+function findSingletonIngreds(recipes) {
     var counts = [];
     for (var i=0; i<recipes.length; i++) {
         for (var j=0; j<recipes[i].length; j++) {
@@ -223,7 +225,7 @@ function allRatioRanges(recipes) {
             curRatios[name] = [cur.r];
         }
     }
-    ones = findSingleIngreds(recipes);
+    ones = findSingletonIngreds(recipes);
     maxes = findIngredMaxes(recipes);
     console.log(ones);
     // console.log(curRatios);
@@ -231,9 +233,17 @@ function allRatioRanges(recipes) {
 }
 
 function getIngredsInRecipe(recipe) {
-    ingreds = [];
+    var ingreds = [];
     for (var i=0; i<recipe.length; i++) {
         ingreds.push(recipe[i].name);
+    }
+    return ingreds;
+}
+
+function getAllIngreds(recipes) {
+    var ingreds = [];
+    for (var i=0; i<recipes.length; i++) {
+        ingreds = getUnique(ingreds.concat(getIngredsInRecipe(recipes[i])));
     }
     return ingreds;
 }
@@ -437,14 +447,41 @@ function writeRanges(recipe, validRanges) {
         msg = [nm, val, mn, mx].join(', ');
         msgs.push(msg);
     }
-
-    msgs.push(recipeDiffs(curRecipes, false).join(', '));
-    msgs.push(closestRecipe(curRecipes));
     $('.errors').html(msgs.join('<br>'));
 }
 
+function findExemplar(name, recipes) {
+    for (var i=0; i<recipes.length; i++) {
+        for (var j=0; j<recipes[i].length; j++) {
+            if (name == recipes[i][j].name) { return recipes[i][j]; }
+        }
+    }
+}
+
+function missingIngreds(recipe) {
+    var ingreds = getIngredsInRecipe(recipe);
+    var allIngreds = getAllIngreds(curRecipes);
+    var missing = [];
+    for (var i=0; i<allIngreds.length; i++) {
+        if ($.inArray(allIngreds[i], ingreds) === -1) {
+            missing.push(allIngreds[i]);
+        }
+    }
+    return missing;
+}
+
+function suggestMissingIngreds(recipe) {
+    missing = missingIngreds(recipe);
+    btns = ['Consider adding: '];
+    for (var i=0; i<missing.length; i++) {
+        btns.push('<button class="btn btn-default new-ingred">' + missing[i] + '</button>');
+    }
+    $('.more-ingreds').html(btns.join(''));
+}
+
 function checkOutOfBoundsIngredients(recipe, ranges) {
-    // console.log(recipe);
+    
+    suggestMissingIngreds(recipe);
     setDeselecteds(ranges);
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
     // writeRanges(recipe, validRanges);

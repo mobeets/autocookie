@@ -113,6 +113,7 @@ function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
   });
   // $(slideSel).slider("value", item.qtyRaw);
   val = $(slideSel).slider("value");
+  // val = item.qtyRaw;
   // console.log([item.name, item.qtyRaw, val, maxVal, stepSize]);
   updateSlider(curRecipe, itemIndex, val, valSel, unitSel, ranges);
 }
@@ -215,9 +216,17 @@ function prepRecipeData(newRecipes) {
   ranges = allRatioRanges(curRecipes);
 }
 
-// function autoRecipeClick() {
-//   $('#food-' + curFoodInd).click();
-// }
+function addNewIngred() {
+  var nm = $(this).text();
+  var ex = findExemplar(nm, curRecipes);
+  // need to init value using ranges
+  obj = {'name': nm, 'qty': 0, 'unit': ex.unit, 'qtyRaw': 0};
+  curRecipe.push(obj);
+  initIngredient(obj, curRecipe.length-1);
+  // validRanges = getAllowedRangesInRecipe(recipe, ranges);
+  // console.log(validRanges);
+  checkOutOfBoundsIngredients(curRecipe, ranges);
+}
 
 function init() {
   $('.help-info').click(function(){$('.more-info').toggle();});
@@ -225,6 +234,7 @@ function init() {
   $('#food-1').click();
   $('#export').click(function(){$('#output').html(exportRecipe())});
   $('#randomize').click(autoRecipe);
+  $('.new-ingred').click(addNewIngred);
 }
 
 $(document).ready(init);
