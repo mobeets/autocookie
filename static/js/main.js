@@ -4,7 +4,7 @@ var ranges;
 var curRecipe;
 var curFood;
 var curFoodInd;
-var maxValDefault = 20;
+var maxValDefault = 5*16*3;
 var stepSizeDefault = 1; // tsp
 var epsilon = 0.0001;
 
@@ -32,14 +32,10 @@ function getStepSize(itemUnit) {
   return stepSize;
 }
 function getMaxVal(itemName) {
-  maxVal = maxValDefault;
-  rng = defaultRanges.filter(function (item) { 
-    return item.name === itemName;
-  });
-  if (rng.length > 0) {
-    maxVal = rng[0].maxQty;
+  if (itemName in ranges.maxValsTsp) {
+    return 2*ranges.maxValsTsp[itemName];
   }
-  return maxVal;
+  return maxValDefault;
 }
 
 function valToPercent(val, maxVal) {
@@ -99,7 +95,7 @@ function updateMeasurement(value, unit, valSel, unitSel) {
 function updateSlider(curRecipe, itemInd, val, valSel, unitSel, ranges) {
   updateMeasurement(val, curRecipe[itemInd].unit, valSel, unitSel);
   curRecipe[itemInd].qtyRaw = val;
-  checkOutOfBoundsIngredients(curRecipe, ranges);
+  return checkOutOfBoundsIngredients(curRecipe, ranges);
 }
 
 function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
@@ -114,7 +110,9 @@ function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
       updateSlider(curRecipe, itemIndex, ui.value, valSel, unitSel, ranges);
     }
   });
+  // $(slideSel).slider("value", item.qtyRaw);
   val = $(slideSel).slider("value");
+  // console.log([item.name, item.qtyRaw, val, maxVal, stepSize]);
   updateSlider(curRecipe, itemIndex, val, valSel, unitSel, ranges);
 }
 
@@ -142,7 +140,7 @@ function initRecipe(recipeInd, ranges) {
   for (var i=0; i<curRecipe.length; i++) {
     initIngredient(curRecipe[i], i);
   }
-  checkOutOfBoundsIngredients(curRecipe, ranges);  
+  checkOutOfBoundsIngredients(curRecipe, ranges);
   $('.progress').click(toggleIngredient);
 }
 
@@ -172,7 +170,8 @@ function initFood(ind) {
   curFood = food;
   curFoodInd = ind;
   $('#recipe-1').click();
-  autoRecipe(curRecipe, validRanges);
+  autoRecipe();
+  // autoRecipe(curRecipe, validRanges);
   $('.recipe-preset').removeClass('active');
 }
 
@@ -215,16 +214,16 @@ function prepRecipeData(newRecipes) {
   ranges = allRatioRanges(curRecipes);
 }
 
-function autoRecipeClick() {
-  $('#food-' + curFoodInd).click();
-}
+// function autoRecipeClick() {
+//   $('#food-' + curFoodInd).click();
+// }
 
 function init() {
   $('.help-info').click(function(){$('.more-info').toggle();});
   initFoodPresets();
   $('#food-1').click();
   $('#export').click(function(){$('#output').html(exportRecipe())});
-  $('#randomize').click(autoRecipeClick);
+  $('#randomize').click(autoRecipe);
 }
 
 $(document).ready(init);
