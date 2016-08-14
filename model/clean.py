@@ -59,7 +59,7 @@ def parse_and_prune_recipes(infile, outfile=None):
     # print recipes with non-unique ings
     # for r in rs:
     #     show_ings(r[INGREDS_KEY])
-    return json.dumps(rs)
+    return json.dumps(rs, indent=2)
 
 if __name__ == '__main__':
     import sys

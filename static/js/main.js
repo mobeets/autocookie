@@ -49,7 +49,7 @@ function valToPercent(val, maxVal) {
 }
 
 function setProgressBar(item, startVal, endVal) {
-  bar = $('div[id^="item-' + (item.name).replace(" ", "-") + '"] .progress');
+  bar = $('div[id^="item-' + (item.name).replaceAll(" ", "-") + '"] .progress');
   maxVal = getMaxVal(item.name);
   pctStart = valToPercent(startVal, maxVal);
   pctEnd = valToPercent(endVal, maxVal);
@@ -121,7 +121,7 @@ function initIngredient(item, i) {
   var line = 
       // '<div class="col-lg-2"></div>' +
       '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ingred-container">' +
-      '<div id="item-' + (item.name).replace(" ", "-") + '" class="ingredient">' +
+      '<div id="item-' + (item.name).replaceAll(" ", "-") + '" class="ingredient">' +
         initProgressBar() + 
         '<div id="slider' + ind + '" class="slider"></div>' +
         '<div class="values">' +

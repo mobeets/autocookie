@@ -1,4 +1,9 @@
 
+String.prototype.replaceAll = function(str1, str2, ignore) 
+{
+    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+} 
+
 function nearestMultiple(number, numerator, denominator) {
     // rounds to nearest numerator/denominator
     // e.g., nearestMultiple(26.746346081599476,1,16) == 26.75
@@ -104,11 +109,12 @@ function exportRecipe() {
         lines.push(msg);
     }
     urls = [];
-    for (var i=0; i< food.recipes.length; i++) {
+    for (var i=0; i < Math.min(food.recipes.length, 5); i++) {
         msg = '<a href="' + food.recipes[i].url + '">' + (i+1).toString() + '</a>';
         urls.push(msg);
     }
-    lines.push('<br>For cooking instructions, see these recipes for guidelines: ' + urls.join(', '));
+    lines.push('<br>' + curFood.instructions);
+    lines.push('<br>For additional instructions, see these recipes for guidelines: ' + urls.join(', '));
     // temp = 350; mins = 8;
     // lines.push('<br>Bake at ' + temp.toString() + 'F for ' + mins.toString() + ' minutes');
     return lines.join('<br>');
@@ -118,7 +124,7 @@ function findSingleIngreds(recipes) {
     var counts = [];
     for (var i=0; i<recipes.length; i++) {
         for (var j=0; j<recipes[i].length; j++) {
-            nm = recipes[i][j].name;
+            var nm = recipes[i][j].name;
             if (nm in counts) {
                 counts[nm] += 1;
             } else {
@@ -128,7 +134,7 @@ function findSingleIngreds(recipes) {
     }
     var ones = [];
     for (var ingred in counts) {
-        if (counts[ingred] == 1) {
+        if (counts[ingred] === 1) {
             ones.push(ingred);
         }
     }
@@ -163,6 +169,7 @@ function allRatioRanges(recipes) {
     }
     ones = findSingleIngreds(recipes);
     maxes = findIngredMaxes(recipes);
+    console.log(ones);
     // console.log(curRatios);
     return {"ratios": curRatios, "ignores": ones, "maxValsTsp": maxes};
 }
@@ -185,7 +192,7 @@ function getMinOfArray(numArray) {
 function setDeselecteds(ranges) {
     // deselect ingreds that only occur once across all recipes
     for (var i=0; i<ranges.ignores.length; i++) {
-        nm = ranges.ignores[i].replace(" ", "-");
+        var nm = ranges.ignores[i].replaceAll(" ", "-");
         $('#item-' + nm + ' .progress').addClass("deselected");
     }
 }
@@ -202,11 +209,6 @@ function getAllowedRangesInRecipe(recipe, ranges) {
     uningreds = getDeselectedIngredients();
     allMins = [];
     allMaxs = [];
-    // allMinNms = [];
-    // allMinRts = [];
-    // allMaxRts = [];
-    // allVals = [];
-    // console.log(ratios);
     for (var i=0; i<ratios.length; i++) {
         var aNm = ratios[i].a;
         var bNm = ratios[i].b;
@@ -231,8 +233,6 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         var aMax = mxRatio*bVal;
         var bMin = aVal/mxRatio;
         var bMax = aVal/mnRatio;
-
-        // console.log([aNm, bNm]);
 
         if ($.inArray(aNm, uningreds) === -1 && $.inArray(bNm, uningreds) === -1) {
             if (!isNaN(aMin)) {
@@ -264,7 +264,6 @@ function getAllowedRangesInRecipe(recipe, ranges) {
         } else {
             mx = getMinOfArray(mxs);
         }
-        // console.log([ingreds[i], zip([allMinNms[ingreds[i]], allVals[ingreds[i]], allMinRts[ingreds[i]], allMaxRts[ingreds[i]], mns, mxs])]);
         validRanges[ingreds[i]] = [mn, mx];
     }
     // console.log(validRanges);
@@ -295,7 +294,7 @@ function markOutOfBoundsIngredients(recipe, validRanges) {
             glyph = '';
         }
         // console.log([nm, mn, mx, glyphId, glyph]);
-        $('#item-' + nm.replace(" ", "-") + ' .glyphs').html(glyph);
+        $('#item-' + nm.replaceAll(" ", "-") + ' .glyphs').html(glyph);
     }
     if (!allValid) { console.log("invalid"); }
     return allValid;
@@ -389,7 +388,7 @@ function checkOutOfBoundsIngredients(recipe, ranges) {
     // console.log(recipe);
     setDeselecteds(ranges);
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
-    // writeRanges(recipe, validRanges);
+    writeRanges(recipe, validRanges);
     allValid = markOutOfBoundsIngredients(recipe, validRanges);
     setProgressBars(recipe, validRanges);
     $('#output').html('');
