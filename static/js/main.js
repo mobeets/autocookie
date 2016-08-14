@@ -33,7 +33,8 @@ function getStepSize(itemUnit) {
 }
 function getMaxVal(itemName) {
   if (itemName in ranges.maxValsTsp) {
-    return 2*ranges.maxValsTsp[itemName];
+    mx = ranges.maxValsTsp[itemName];
+    return Math.max(3, 2*mx);
   }
   return maxValDefault;
 }

@@ -116,7 +116,7 @@ var cakeRecipes = [
     }
 ];
 
-var cookieRecipes = [
+var ccCookies = [
     {
         "url": "https://www.verybestbaking.com/recipes/18476/original-nestle-toll-house-chocolate-chip-cookies/",
         "name": "Original Nestle Toll House Chocolate Chip Cookies",
@@ -918,7 +918,7 @@ var pbCookies = [
         "qty": 1.5
       },
       {
-        "name": "butter room temperature",
+        "name": "butter",
         "unit": "cup",
         "qty": 0.5
       },
@@ -1307,7 +1307,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "butter  room temperature",
+        "name": "butter",
         "unit": "cup",
         "qty": 0.5
       },
@@ -2513,16 +2513,16 @@ var sugarCookies = [
 
 var allRecipes = [
     {
+        "name": "chocolate chip cookies",
+        "key": "choc-chip-cookies",
+        "recipes": ccCookies,
+        "instructions": "Bake at 375F for 8-10 minutes.",
+    },
+    {
         "name": "peanut butter cookies",
         "key": "pb-cookies",
         "recipes": pbCookies,
         "instructions": "Bake at 350F for 6-10 minutes.",
-    },
-    {
-        "name": "chocolate chip cookies",
-        "key": "choc-chip-cookies",
-        "recipes": cookieRecipes,
-        "instructions": "Bake at 375F for 8-10 minutes.",
     },
     {
         "name": "sugar cookies",

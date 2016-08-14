@@ -1,3 +1,14 @@
+function getUnique(arr) {
+   var u = {}, a = [];
+   for (var i = 0, l = arr.length; i < l; ++i){
+      if(u.hasOwnProperty(arr[i])) {
+         continue;
+      }
+      a.push(arr[i]);
+      u[arr[i]] = 1;
+   }
+   return a;
+}
 
 String.prototype.replaceAll = function(str1, str2, ignore) 
 {
@@ -65,23 +76,67 @@ function addAllRawQtys(recipes) {
     return recipes;
 }
 
-function makeRatio(r1, r2) {
-    // alphabetize
-    if (r1.name > r2.name) {
-        r3 = r1; r1 = r2; r2 = r3;
+function recipeDiff(r1, r2) {
+    is1 = getIngredsInRecipe(r1);
+    is2 = getIngredsInRecipe(r2);
+    ingreds = getUnique(is1.concat(is2));
+    var ds = 0;
+    for (var i=0; i<ingreds.length; i++) {
+        var nm = ingreds[i];
+        var v1 = 0; var v2 = 0;
+        var ind1 = $.inArray(nm, is1);
+        var ind2 = $.inArray(nm, is2);
+        if (ind1 > -1) { v1 = r1[ind1].qtyRaw; }
+        if (ind2 > -1) { v2 = r2[ind2].qtyRaw; }
+        ds += Math.abs(v1-v2);
     }
-    // console.log([r1.name, r2.name, r1.qtyRaw/r2.qtyRaw]);
+    return ds;
+}
+
+function recipeDiffs(recipes, returnIndex) {
+    var dfs = [];
+    var minInd = NaN; var maxInd = NaN;
+    var minVal = 1000000; var maxVal = 0;
+    for (var i=0; i<recipes.length; i++) {
+        var v = recipeDiff(recipes[i], curRecipe);
+        if (v < minVal) { minInd = i; minVal = v; }
+        if (v > maxVal) { maxInd = i; maxVal = v; }
+        dfs.push(v);
+    }
+    if (returnIndex) { return {"minInd": minInd, "maxInd": maxInd, "ds": dfs}; }
+    return dfs;
+}
+
+function closestRecipe(recipes) {
+    dfs = recipeDiffs(recipes, true);
+    minInd = dfs.minInd;
+    url = curFood.recipes[minInd].url;
+    nrm = recipeDiff(recipes[minInd], []);
+    minVal = dfs.ds[dfs.minInd];
+    pctStr = Math.round(100*(minVal/nrm)).toString() + '%';
+    indStr = (minInd+1).toString();
+    return 'Your recipe is at least ' + pctStr + ' different from the template recipes below. It is most similar to <a href="' + url + '">this</a> recipe.';
+    // 'ecipe #' + indStr + " is " + pctStr + ' different (' + minVal.toFixed(2) + ", " + nrm.toFixed(2) + ')';
+    // return inds.join(', ');
+}
+
+function makeRatio(i1, i2) {
+    // alphabetize
+    if (i1.name > i2.name) {
+        i3 = i1; i1 = i2; i2 = i3;
+    }
+    // console.log([i1.name, i2.name, i1.qtyRaw/i2.qtyRaw]);
     return {
-        "a": r1.name,
-        "b": r2.name,
-        "name": r1.name + ":" + r2.name,
-        "r": r1.qtyRaw/r2.qtyRaw
+        "a": i1.name,
+        "b": i2.name,
+        "name": i1.name + ":" + i2.name,
+        "r": i1.qtyRaw/i2.qtyRaw
     }
 }
 
 function getRatiosInRecipe(recipe) {
     var ratios = [];
-    for (var i=0; i<recipe.length; i++) {        
+    for (var i=0; i<recipe.length; i++) {
         for (var j=i+1; j<recipe.length; j++) {
             ratios.push(makeRatio(recipe[i], recipe[j]));
         }
@@ -113,8 +168,9 @@ function exportRecipe() {
         msg = '<a href="' + food.recipes[i].url + '">' + (i+1).toString() + '</a>';
         urls.push(msg);
     }
-    lines.push('<br>' + curFood.instructions);
-    lines.push('<br>For additional instructions, see these recipes for guidelines: ' + urls.join(', '));
+    helpMsg = ' (For additional instructions, see these recipes for guidelines: ' + urls.join(', ') + '.)';
+    lines.push('<br>' + curFood.instructions + helpMsg);
+    lines.push('<br>' + closestRecipe(curRecipes));
     // temp = 350; mins = 8;
     // lines.push('<br>Bake at ' + temp.toString() + 'F for ' + mins.toString() + ' minutes');
     return lines.join('<br>');
@@ -381,6 +437,9 @@ function writeRanges(recipe, validRanges) {
         msg = [nm, val, mn, mx].join(', ');
         msgs.push(msg);
     }
+
+    msgs.push(recipeDiffs(curRecipes, false).join(', '));
+    msgs.push(closestRecipe(curRecipes));
     $('.errors').html(msgs.join('<br>'));
 }
 
@@ -388,7 +447,7 @@ function checkOutOfBoundsIngredients(recipe, ranges) {
     // console.log(recipe);
     setDeselecteds(ranges);
     validRanges = getAllowedRangesInRecipe(recipe, ranges);
-    writeRanges(recipe, validRanges);
+    // writeRanges(recipe, validRanges);
     allValid = markOutOfBoundsIngredients(recipe, validRanges);
     setProgressBars(recipe, validRanges);
     $('#output').html('');
