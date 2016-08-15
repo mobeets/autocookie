@@ -158,9 +158,13 @@ function getAllRatios(recipes) {
 
 function exportRecipe() {
     var lines = [];
+    uningreds = getDeselectedIngredients();
     lines.push('<br><h4>' + curFood.name + '</h4>');
     for (var i=0; i< curRecipe.length; i++) {
         item = curRecipe[i];
+        if ($.inArray(item.name, uningreds) > -1) {
+            continue;
+        }
         qty = formatMeasurement(item.qtyRaw, item.unit);
         msg = qty + ' ' + item.unit + ' ' + item.name;
         lines.push(msg);
@@ -472,11 +476,13 @@ function missingIngreds(recipe) {
 
 function suggestMissingIngreds(recipe) {
     missing = missingIngreds(recipe);
-    btns = ['Consider adding: '];
+    lis = [];
     for (var i=0; i<missing.length; i++) {
-        btns.push('<button class="btn btn-default new-ingred">' + missing[i] + '</button>');
+        var li = '<li class="new-ingred"><a href="#">' + missing[i] + '</a></li>';
+        lis.push(li);
     }
-    $('.more-ingreds').html(btns.join(''));
+    $('.more-ingreds-menu').html(lis.join(''));
+    $('.new-ingred').click(addNewIngred);
 }
 
 function checkOutOfBoundsIngredients(recipe, ranges) {

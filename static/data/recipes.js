@@ -1092,7 +1092,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "peanut",
+        "name": "peanuts",
         "unit": "cup",
         "qty": 0.25
       }

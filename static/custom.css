@@ -167,3 +167,20 @@ h1 {
 .divider {
     padding: 0;
 }
+
+
+.new-ingred {
+    margin-bottom: 5px;
+}
+.closed {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+.rotate {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}

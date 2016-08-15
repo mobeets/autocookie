@@ -95,6 +95,9 @@ function updateMeasurement(value, unit, valSel, unitSel) {
 
 function updateSlider(curRecipe, itemInd, val, valSel, unitSel, ranges) {
   updateMeasurement(val, curRecipe[itemInd].unit, valSel, unitSel);
+  var nmKey = curRecipe[itemInd].name.replaceAll(" ","-");
+  $('#item-' + nmKey).removeClass("closed")
+  $('#item-' + nmKey + ' .close').removeClass("rotate");
   curRecipe[itemInd].qtyRaw = val;
   return checkOutOfBoundsIngredients(curRecipe, ranges);
 }
@@ -131,6 +134,7 @@ function initIngredient(item, i) {
           '<span id="val' + ind + '" class="amount"></span>' + 
           ' <span id="unit' + ind + '" class="unit">tsp</span>' + 
           ' <span class="item">' + item.name + '</span>' + 
+          ' <span class="close">&#10006;</span>' + 
         '</div>' + 
       '</div></div>';
   $('.ingredients').append(line);
@@ -142,7 +146,7 @@ function initRecipe(recipeInd, ranges) {
   for (var i=0; i<curRecipe.length; i++) {
     initIngredient(curRecipe[i], i);
   }
-  checkOutOfBoundsIngredients(curRecipe, ranges);
+  checkOutOfBoundsIngredients(curRecipe, ranges);  
   $('.progress').click(toggleIngredient);
 }
 
@@ -200,8 +204,19 @@ function toggleIngredient() {
 }
 
 function getDeselectedIngredients() {
-  uningreds = [];
+  var uningreds = [];
+  for (var i=0; i<curRecipe.length; i++) {
+    if (curRecipe[i].qtyRaw == 0) {
+      var nmKey = curRecipe[i].name.replaceAll(" ","-");
+      toggleClosed(curRecipe[i].name, false);
+      // $('#item-' + nmKey).addClass('closed');
+      // uningreds.push(curRecipe[i].name);
+    }
+  }
   objs = $('.deselected').parent().children('.values').children('.item').each(function () {
+    uningreds.push($(this).text());
+  });
+  objs = $('.closed').children('.values').children('.item').each(function () {
     uningreds.push($(this).text());
   });
   return uningreds;
@@ -218,13 +233,34 @@ function prepRecipeData(newRecipes) {
 
 function addNewIngred() {
   var nm = $(this).text();
+  console.log(nm);
   var ex = findExemplar(nm, curRecipes);
   // need to init value using ranges
-  obj = {'name': nm, 'qty': 0, 'unit': ex.unit, 'qtyRaw': 0};
-  curRecipe.push(obj);
-  initIngredient(obj, curRecipe.length-1);
-  // validRanges = getAllowedRangesInRecipe(recipe, ranges);
-  // console.log(validRanges);
+  
+  var item = {'name': nm, 'qty': 0, 'qtyRaw': 0, 'unit': ex.unit};
+  curRecipe.push(item);
+  initIngredient(item, curRecipe.length-1);
+  $('.progress').click(toggleIngredient);
+  checkOutOfBoundsIngredients(curRecipe, ranges);
+}
+
+function toggleClosed(nm, rotateX) {
+  var nmKey = nm.replaceAll(" ", "-");
+  $('#item-' + nmKey).toggleClass("closed");
+  if (rotateX) {
+    $('#item-' + nmKey + ' .close').toggleClass("rotate");
+  }
+}
+
+function removeIngred() {
+  var nm = $(this).prev().text();
+  var nmKey = nm.replaceAll(" ", "-");
+  for (var i=0; i<curRecipe.length; i++) {
+    if (curRecipe[i].name === nm) {
+      toggleClosed(nm, true);
+      break;
+    }
+  }
   checkOutOfBoundsIngredients(curRecipe, ranges);
 }
 
@@ -234,7 +270,7 @@ function init() {
   $('#food-1').click();
   $('#export').click(function(){$('#output').html(exportRecipe())});
   $('#randomize').click(autoRecipe);
-  $('.new-ingred').click(addNewIngred);
+  $('.close').click(removeIngred);
 }
 
 $(document).ready(init);

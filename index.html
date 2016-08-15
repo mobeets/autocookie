@@ -68,9 +68,13 @@
       <div class="row ingredients text-center">
       </div>
       <div class="suggestions col-lg-12">
-        <div class="more-ingreds row text-center">
-        </div>
         <div class="row text-center">
+          <div class="btn-group new-ingreds-container">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="ingred-name">Add...</span> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu more-ingreds-menu"></ul>
+          </div>
           <button type="button" class="btn btn-default btn-success"><span id="randomize">Randomize</span></button>
           <button type="button" class="btn btn-default btn-warning"><span id="export">Export</span></button>
         </div>
