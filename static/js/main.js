@@ -257,7 +257,7 @@ function addNewIngred() {
 }
 
 function makeClosed(nm, rotateX) {
-  console.log(nm);
+  // console.log(nm);
   var nmKey = nm.replaceAll(" ", "-");
   var itemSel = $('#item-' + nmKey);
   var closeSel = $('#item-' + nmKey + ' .close');
@@ -273,6 +273,7 @@ function makeClosed(nm, rotateX) {
 }
 
 function removeIngred() {
+  // console.log("REMOVING");
   var nm = $(this).prev().text();
   var nmKey = nm.replaceAll(" ", "-");
   for (var i=0; i<curRecipe.length; i++) {
