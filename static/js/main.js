@@ -124,7 +124,6 @@ function initSlider(slideSel, valSel, unitSel, item, itemIndex) {
 function initIngredient(item, i) {
   ind = i.toString();
   var line = 
-      // '<div class="col-lg-2"></div>' +
       '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ingred-container">' +
       '<div id="item-' + (item.name).replaceAll(" ", "-") + '" class="ingredient">' +
         initProgressBar() + 
@@ -158,21 +157,40 @@ function selectRecipePreset(event) {
   initRecipe(ind, ranges);
 }
 
-function initRecipePresets(recipes) {
+function initRecipePresets(n, i1) {
+  var maxPresetCount = 5;
+  var i2 = Math.min(i1-1+maxPresetCount, n);
+
   $('.recipe-presets').html('');
-  for (var i=0; i<recipes.length; i++) {
+
+  var prevLink = '<span aria-hidden="true">&laquo;</span>';
+  var prev = '<li id="prev-recipe">' + prevLink + '</li>';
+  $('.recipe-presets').append(prev);
+
+  for (var i=(i1-1); i<i2; i++) {
     ind = (i+1).toString();
     btn = '<li id=recipe-' + ind + ' class="recipe-preset"><span>' + ind + '</span></li>';
     $('.recipe-presets').append(btn);
   }
+
+  var nextLink = '<span aria-hidden="true">&raquo;</span>';
+  var next = '<li id="next-recipe">' + nextLink + '</li>';
+  $('.recipe-presets').append(next);
+
   $('.recipe-preset').click(selectRecipePreset);
+  if (i1 > 1) {
+    $('#prev-recipe').click(function(){initRecipePresets(n,i1-maxPresetCount);});
+  }
+  if (i2 < n) {
+    $('#next-recipe').click(function(){initRecipePresets(n,i1+maxPresetCount);});
+  }
 }
 
 function initFood(ind) {
   food = allRecipes[ind-1];
   $('.food-name').text(food.name);
   prepRecipeData(food.recipes);
-  initRecipePresets(curRecipes);
+  initRecipePresets(curRecipes.length, 1);
   curFood = food;
   curFoodInd = ind;
   $('#recipe-1').click();
@@ -208,9 +226,7 @@ function getDeselectedIngredients() {
   for (var i=0; i<curRecipe.length; i++) {
     if (curRecipe[i].qtyRaw == 0) {
       var nmKey = curRecipe[i].name.replaceAll(" ","-");
-      toggleClosed(curRecipe[i].name, false);
-      // $('#item-' + nmKey).addClass('closed');
-      // uningreds.push(curRecipe[i].name);
+      makeClosed(curRecipe[i].name, false);
     }
   }
   objs = $('.deselected').parent().children('.values').children('.item').each(function () {
@@ -233,22 +249,26 @@ function prepRecipeData(newRecipes) {
 
 function addNewIngred() {
   var nm = $(this).text();
-  console.log(nm);
-  var ex = findExemplar(nm, curRecipes);
-  // need to init value using ranges
-  
+  var ex = findExemplar(nm, curRecipes);  
   var item = {'name': nm, 'qty': 0, 'qtyRaw': 0, 'unit': ex.unit};
   curRecipe.push(item);
   initIngredient(item, curRecipe.length-1);
   $('.progress').click(toggleIngredient);
-  checkOutOfBoundsIngredients(curRecipe, ranges);
 }
 
-function toggleClosed(nm, rotateX) {
+function makeClosed(nm, rotateX) {
+  console.log(nm);
   var nmKey = nm.replaceAll(" ", "-");
-  $('#item-' + nmKey).toggleClass("closed");
-  if (rotateX) {
-    $('#item-' + nmKey + ' .close').toggleClass("rotate");
+  var itemSel = $('#item-' + nmKey);
+  var closeSel = $('#item-' + nmKey + ' .close');
+  if (!closeSel.hasClass("rotate")) {
+    itemSel.addClass("closed");
+    if (rotateX) {
+      closeSel.addClass("rotate");
+    }
+  } else {
+    itemSel.removeClass("closed");
+    closeSel.removeClass("rotate");
   }
 }
 
@@ -257,7 +277,7 @@ function removeIngred() {
   var nmKey = nm.replaceAll(" ", "-");
   for (var i=0; i<curRecipe.length; i++) {
     if (curRecipe[i].name === nm) {
-      toggleClosed(nm, true);
+      makeClosed(nm, true);
       break;
     }
   }

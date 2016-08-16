@@ -158,7 +158,7 @@ function getAllRatios(recipes) {
 
 function exportRecipe() {
     var lines = [];
-    uningreds = getDeselectedIngredients();
+    var uningreds = getDeselectedIngredients();
     lines.push('<br><h4>' + curFood.name + '</h4>');
     for (var i=0; i< curRecipe.length; i++) {
         item = curRecipe[i];
@@ -411,6 +411,7 @@ function getRandomNearStep(min, max, item) {
 function autoRecipe() {
     recipe = curRecipe;
     var ingreds = getIngredsInRecipe(recipe);
+    var uningreds = getDeselectedIngredients();
 
     var maxTries = 10;
     var curTry = 0;
@@ -424,6 +425,7 @@ function autoRecipe() {
             var curInd = inds[i];
             var item = recipe[curInd];
             var nm = item.name;
+            if ($.inArray(nm, uningreds) === -1) { continue; }
             var curVal = getRandomNearStep(validRanges[nm][0], validRanges[nm][1], item);
 
             // set trigger and update value in this really janky way
@@ -481,8 +483,8 @@ function suggestMissingIngreds(recipe) {
         var li = '<li class="new-ingred"><a href="#">' + missing[i] + '</a></li>';
         lis.push(li);
     }
-    $('.more-ingreds-menu').html(lis.join(''));
-    $('.new-ingred').click(addNewIngred);
+    // $('.more-ingreds-menu').html(lis.join(''));
+    // $('.new-ingred').click(addNewIngred);
 }
 
 function checkOutOfBoundsIngredients(recipe, ranges) {
