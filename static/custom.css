@@ -183,3 +183,13 @@ h1 {
     -o-transform: rotate(-45deg);
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
+
+.github {
+    width: 20px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+.github:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}

@@ -158,7 +158,7 @@ function selectRecipePreset(event) {
 }
 
 function initRecipePresets(n, i1) {
-  var maxPresetCount = 35;
+  var maxPresetCount = 5;
   var i2 = Math.min(i1-1+maxPresetCount, n);
 
   $('.recipe-presets').html('');
