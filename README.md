@@ -15,5 +15,5 @@
 
 ### 3. Create a new recipe
 
-* Add the contents of the file you created in step 2 to the file `static/data/recipes.js`
+* Add the contents of the file you created in step 2 to the `allRecipes` variable in the file `static/data/recipes.js`.
 * Open `index.html`.

@@ -110,16 +110,20 @@ function recipeDiffs(recipes, returnIndex) {
 }
 
 function closestRecipe(recipes) {
-    dfs = recipeDiffs(recipes, true);
-    minInd = dfs.minInd;
-    url = curFood.recipes[minInd].url;
-    nrm = recipeDiff(recipes[minInd], []);
-    minVal = dfs.ds[dfs.minInd];
-    pctStr = Math.round(100*(minVal/nrm)).toString() + '%';
-    indStr = (minInd+1).toString();
-    return '<p>Your recipe is at least ' + pctStr + ' different from the template recipes below. It is most similar to <a href="' + url + '">this</a> recipe.</p><p>If you make this recipe, please <a href="https://twitter.com/jehosafet">let me know</a> how it turned out!</p>';
-    // 'ecipe #' + indStr + " is " + pctStr + ' different (' + minVal.toFixed(2) + ", " + nrm.toFixed(2) + ')';
-    // return inds.join(', ');
+    var dfs = recipeDiffs(recipes, true);
+    var minInd = dfs.minInd;
+    var url = curFood.recipes[minInd].url;
+    var nrm = recipeDiff(recipes[minInd], []);
+    var minVal = dfs.ds[dfs.minInd];
+    var pctVal = Math.round(100*(minVal/nrm));
+    var pctStr = pctVal.toString() + '%';
+    var indStr = (minInd+1).toString();
+    if (pctVal === 0) {
+        return '<p>Unfortunately, your recipe is basically identical to <a href="' + url + '">this</a> recipe. Try starting from a different preset, hitting Randomize, and trying again!</p>';
+    }
+    var toneMsg = 'more than';
+    if (pctVal <= 2) { var toneMsg = 'only'; }
+    return '<p>Your recipe is ' + toneMsg + ' ' + pctStr + ' different from the template recipes below. It is most similar to <a href="' + url + '">this</a> recipe.</p><p>If you make this recipe, please <a href="https://twitter.com/jehosafet">let me know</a> how it turns out!</p>';
 }
 
 function makeRatio(i1, i2) {
@@ -174,12 +178,13 @@ function exportRecipe() {
         msg = '<a href="' + food.recipes[i].url + '">' + (i+1).toString() + '</a>';
         urls.push(msg);
     }
-    helpMsg = ' (For additional instructions, see these recipes for guidelines: ' + urls.join(', ') + '.)';
+    helpMsg = ' For additional instructions, see these recipes for guidelines: ' + urls.join(', ') + '.';
     lines.push('<br>' + curFood.instructions + helpMsg + '<br>');
     lines.push(closestRecipe(curRecipes));
     // temp = 350; mins = 8;
     // lines.push('<br>Bake at ' + temp.toString() + 'F for ' + mins.toString() + ' minutes');
-    return lines.join('<br>');
+    var msg = lines.join('<br>');
+    $('#output').html(msg);
 }
 
 function findSingletonIngreds(recipes) {
@@ -425,7 +430,7 @@ function autoRecipe() {
             var curInd = inds[i];
             var item = recipe[curInd];
             var nm = item.name;
-            if ($.inArray(nm, uningreds) === -1) { continue; }
+            if ($.inArray(nm, uningreds) > -1) { continue; }
             var curVal = getRandomNearStep(validRanges[nm][0], validRanges[nm][1], item);
 
             // set trigger and update value in this really janky way

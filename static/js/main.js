@@ -158,7 +158,7 @@ function selectRecipePreset(event) {
 }
 
 function initRecipePresets(n, i1) {
-  var maxPresetCount = 5;
+  var maxPresetCount = 35;
   var i2 = Math.min(i1-1+maxPresetCount, n);
 
   $('.recipe-presets').html('');
@@ -288,7 +288,7 @@ function init() {
   $('.help-info').click(function(){$('.more-info').toggle();});
   initFoodPresets();
   $('#food-1').click();
-  $('#export').click(function(){$('#output').html(exportRecipe())});
+  $('#export').click(exportRecipe);
   $('#randomize').click(autoRecipe);
   $('.close').click(removeIngred);
 }
