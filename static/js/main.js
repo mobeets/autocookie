@@ -78,13 +78,12 @@ function setProgressBars(recipe, validRanges) {
 }
 
 function initProgressBar() {
-  return `
-    <div class="progress">
-      <div class="progress-bar progress-bar-empty progress-bar-start" role="progressbar" style="width:0%"></div>
-      <div class="progress-bar progress-bar-filled" role="progressbar" style="width:0%">
-      </div>
-      <div class="progress-bar progress-bar-empty progress-bar-end" role="progressbar" style="width:0%"></div>
-    </div>`;
+  return '<div class="progress">\
+      <div class="progress-bar progress-bar-empty progress-bar-start" role="progressbar" style="width:0%"></div>\
+      <div class="progress-bar progress-bar-filled" role="progressbar" style="width:0%">\
+      </div>\
+      <div class="progress-bar progress-bar-empty progress-bar-end" role="progressbar" style="width:0%"></div>\
+    </div>';
 }
 
 function updateMeasurement(value, unit, valSel, unitSel) {
