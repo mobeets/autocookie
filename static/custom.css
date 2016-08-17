@@ -7,6 +7,15 @@ body {
     /*font-family: 'Helvetica', sans-serif;*/
     padding-top: 50px;
 }
+
+.about {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.1em;
+}
+.about h4 {
+    font-size: 1.5em;
+}
+
 #shop {
     /*font-family: 'Poiret One', sans-serif;*/
 }

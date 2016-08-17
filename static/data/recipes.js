@@ -60,7 +60,7 @@ var gingersnaps = [
         "qty": 0.25
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }
@@ -70,164 +70,7 @@ var gingersnaps = [
     "yld": "4-5 dozen cookies", 
     "num": 27, 
     "id": "Gingersnap-Cookies-1214702"
-  }, 
-  {
-    "ingredientLines": [
-      "2 1/2 cups all-purpose flour", 
-      "1 1/2 teaspoons baking soda", 
-      "3/4 teaspoon cinnamon", 
-      "1 teaspoon ground ginger", 
-      "1/2 teaspoon ground cloves", 
-      "1/2 teaspoon salt", 
-      "1/2 teaspoon cayenne pepper", 
-      "8 tablespoons (or 1 stick) margarine", 
-      "1/2 cup granulated sugar", 
-      "1 cup light brown sugar, packed", 
-      "1/3 cup molasses", 
-      "2 egg whites", 
-      "Powder Sugar"
-    ], 
-    "name": "Labor Inducing Gingersnap Cookie", 
-    "ingredients": [
-      {
-        "name": "all-purpose flour", 
-        "unit": "cup", 
-        "qty": 2.5
-      }, 
-      {
-        "name": "baking soda", 
-        "unit": "tsp", 
-        "qty": 1.5
-      }, 
-      {
-        "name": "cinnamon", 
-        "unit": "tsp", 
-        "qty": 0.75
-      }, 
-      {
-        "name": "ground ginger", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "cloves", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "salt", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "cayenne pepper", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "margarine", 
-        "unit": "cup", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "white sugar", 
-        "unit": "cup", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "brown sugar", 
-        "unit": "cup", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "molasses", 
-        "unit": "Tbsp", 
-        "qty": 5
-      }, 
-      {
-        "name": "egg whites", 
-        "unit": "", 
-        "qty": 2.0
-      }
-    ], 
-    "url": "http://www.thefrugalnavywife.com/?p=84500", 
-    "url_ymly": "http://www.yummly.com/recipe/Labor-Inducing-Gingersnap-Cookie-1704578", 
-    "yld": null, 
-    "num": 4, 
-    "id": "Labor-Inducing-Gingersnap-Cookie-1704578"
-  }, 
-  {
-    "ingredientLines": [
-      "2 cups sifted all-purpose flour", 
-      "1 tablespoon ground ginger", 
-      "2 teaspoons baking soda", 
-      "1 teaspoon cinnamon", 
-      "1/2 teaspoon salt", 
-      "3/4 cup shortening", 
-      "1 cup white sugar", 
-      "1 egg", 
-      "1/4 cup dark molasses", 
-      "1/3 cup cinnamon sugar"
-    ], 
-    "name": "Grandma's Gingersnap Cookies", 
-    "ingredients": [
-      {
-        "name": "all-purpose flour", 
-        "unit": "cup", 
-        "qty": 2.0
-      }, 
-      {
-        "name": "ground ginger", 
-        "unit": "Tbsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "baking soda", 
-        "unit": "tsp", 
-        "qty": 2.0
-      }, 
-      {
-        "name": "cinnamon", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "salt", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "shortening", 
-        "unit": "cup", 
-        "qty": 0.75
-      }, 
-      {
-        "name": "white sugar", 
-        "unit": "cup", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "egg", 
-        "unit": "", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "molasses", 
-        "unit": "cup", 
-        "qty": 0.25
-      }, 
-      {
-        "name": "cinnamon sugar", 
-        "unit": "Tbsp", 
-        "qty": 5
-      }
-    ], 
-    "url": "http://allrecipes.com/recipe/10365/grandmas-gingersnap-cookies/", 
-    "url_ymly": "http://www.yummly.com/recipe/Grandma_s-Gingersnap-Cookies-1607995", 
-    "yld": "30", 
-    "num": 30, 
-    "id": "Grandma_s-Gingersnap-Cookies-1607995"
-  }, 
+  },
   {
     "ingredientLines": [
       "3/4 cup butter, softened", 
@@ -254,7 +97,7 @@ var gingersnaps = [
         "qty": 1.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -330,7 +173,7 @@ var gingersnaps = [
         "qty": 0.25
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -502,7 +345,7 @@ var gingersnaps = [
         "qty": 1.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -603,7 +446,7 @@ var gingersnaps = [
         "qty": 0.25
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -645,7 +488,7 @@ var gingersnaps = [
         "qty": 1.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -712,7 +555,7 @@ var gingersnaps = [
         "qty": 1.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -761,7 +604,7 @@ var gingersnaps = [
 ];
 
 var oatmealCookies = [
-  {
+    {
     "ingredientLines": [
       "1 cup butter, softened", 
       "1 1/2 cups packed brown sugar", 
@@ -772,9 +615,9 @@ var oatmealCookies = [
       "1 teaspoon vanilla", 
       "1 1/2 cups all-purpose flour", 
       "3 cups regular or quick-cooking rolled oats", 
-      "1 cup raisins*"
+      "1 cup raisins"
     ], 
-    "name": "Oatmeal-raisin Cookies", 
+    "name": "Oatmeal-Raisin Cookies", 
     "ingredients": [
       {
         "name": "butter", 
@@ -827,12 +670,12 @@ var oatmealCookies = [
         "qty": 1.0
       }
     ], 
-    "url": "http://designbakerun.blogspot.com/2014/02/oatmeal-raisin-cookies.html", 
-    "url_ymly": "http://www.yummly.com/recipe/Oatmeal-raisin-Cookies-1771991", 
-    "yld": null, 
-    "num": 4, 
-    "id": "Oatmeal-raisin-Cookies-1771991"
-  }, 
+    "url": "http://www.bhg.com/recipe/oatmeal-raisin-cookies/", 
+    "url_ymly": "http://www.yummly.com/recipe/Oatmeal-Raisin-Cookies-636461", 
+    "yld": "72 servings", 
+    "num": 72, 
+    "id": "Oatmeal-Raisin-Cookies-636461"
+  },
   {
     "ingredientLines": [
       "1 cup (2 sticks) butter, softened", 
@@ -950,7 +793,7 @@ var oatmealCookies = [
         "qty": 5
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -1105,7 +948,7 @@ var oatmealCookies = [
         "qty": 0.6666666666666666
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -1264,7 +1107,7 @@ var oatmealCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -1324,78 +1167,6 @@ var oatmealCookies = [
     "yld": "52 cookies", 
     "num": 26, 
     "id": "Oatmeal-Raisin-Cookies-1778434"
-  }, 
-  {
-    "ingredientLines": [
-      "1 cup butter, softened", 
-      "1 1/2 cups packed brown sugar", 
-      "1 teaspoon baking soda", 
-      "1 teaspoon cinnamon", 
-      "1/2 teaspoon salt", 
-      "2 eggs", 
-      "1 teaspoon vanilla", 
-      "1 1/2 cups all-purpose flour", 
-      "3 cups regular or quick-cooking rolled oats", 
-      "1 cup raisins"
-    ], 
-    "name": "Oatmeal-Raisin Cookies", 
-    "ingredients": [
-      {
-        "name": "butter", 
-        "unit": "cup", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "brown sugar", 
-        "unit": "cup", 
-        "qty": 1.5
-      }, 
-      {
-        "name": "baking soda", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "cinnamon", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "salt", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "eggs", 
-        "unit": "", 
-        "qty": 2.0
-      }, 
-      {
-        "name": "vanilla", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "all-purpose flour", 
-        "unit": "cup", 
-        "qty": 1.5
-      }, 
-      {
-        "name": "rolled oats", 
-        "unit": "cup", 
-        "qty": 3.0
-      }, 
-      {
-        "name": "raisins", 
-        "unit": "cup", 
-        "qty": 1.0
-      }
-    ], 
-    "url": "http://www.bhg.com/recipe/oatmeal-raisin-cookies/", 
-    "url_ymly": "http://www.yummly.com/recipe/Oatmeal-Raisin-Cookies-636461", 
-    "yld": "72 servings", 
-    "num": 72, 
-    "id": "Oatmeal-Raisin-Cookies-636461"
   }, 
   {
     "ingredientLines": [
@@ -1688,7 +1459,7 @@ var oatmealCookies = [
         "qty": 0.6666666666666666
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -2526,7 +2297,7 @@ var snickerdoodles = [
         "qty": 0.75
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -2740,7 +2511,7 @@ var snickerdoodles = [
         "qty": 5.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -2894,7 +2665,7 @@ var snickerdoodles = [
         "qty": 1.5
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -3324,7 +3095,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -3377,7 +3148,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -3486,72 +3257,6 @@ var pbCookies = [
   },
   {
     "ingredientLines": [
-      "1\/2 cup butter, softened",
-      "1\/2 cup peanut butter",
-      "1\/2 cup granulated sugar",
-      "1\/2 cup packed brown sugar or 1\/4 cup honey",
-      "1\/2 teaspoon baking soda",
-      "1\/2 teaspoon baking powder",
-      "1 egg",
-      "1\/2 teaspoon vanilla",
-      "1 1\/4 cups all-purpose flour"
-    ],
-    "name": "Classic Peanut Butter Cookies",
-    "ingredients": [
-      {
-        "name": "butter",
-        "unit": "cup",
-        "qty": 0.5
-      },
-      {
-        "name": "peanut butter",
-        "unit": "cup",
-        "qty": 0.5
-      },
-      {
-        "name": "white sugar",
-        "unit": "cup",
-        "qty": 0.5
-      },
-      {
-        "name": "brown sugar",
-        "unit": "cup",
-        "qty": 0.5
-      },
-      {
-        "name": "baking soda",
-        "unit": "tsp",
-        "qty": 0.5
-      },
-      {
-        "name": "baking powder",
-        "unit": "tsp",
-        "qty": 0.5
-      },
-      {
-        "name": "egg",
-        "unit": "",
-        "qty": 1
-      },
-      {
-        "name": "vanilla",
-        "unit": "tsp",
-        "qty": 0.5
-      },
-      {
-        "name": "all-purpose flour",
-        "unit": "cup",
-        "qty": 1.25
-      }
-    ],
-    "url": "http:\/\/www.bhg.com\/recipe\/cookies\/classic-peanut-butter-cookies\/?socsrc=bhg_facebook_20160619135000_495633086",
-    "url_ymly": "http:\/\/www.yummly.com\/recipe\/Classic-Peanut-Butter-Cookies-1708448",
-    "yld": "about 36 cookies",
-    "num": 18,
-    "id": "Classic-Peanut-Butter-Cookies-1708448"
-  },
-  {
-    "ingredientLines": [
       "1 cup peanut butter (I use chunky)",
       "1\/2 cup white sugar",
       "1\/2 cup brown sugar",
@@ -3578,7 +3283,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -3632,7 +3337,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -3707,7 +3412,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       }
@@ -3748,7 +3453,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -3805,7 +3510,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -3854,7 +3559,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -3925,7 +3630,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -3948,60 +3653,6 @@ var pbCookies = [
   },
   {
     "ingredientLines": [
-      "1 cup peanut butter",
-      "1\/2 cup white sugar",
-      "1\/2 cup brown sugar",
-      "1 egg",
-      "1 teaspoon baking soda",
-      "1 teaspoon vanilla",
-      "pinch of salt"
-    ],
-    "name": "The Best Peanut Butter Cookies",
-    "ingredients": [
-      {
-        "name": "peanut butter",
-        "unit": "cup",
-        "qty": 1
-      },
-      {
-        "name": "white sugar",
-        "unit": "cup",
-        "qty": 0.5
-      },
-      {
-        "name": "brown sugar",
-        "unit": "cup",
-        "qty": 0.5
-      },
-      {
-        "name": "egg",
-        "unit": "",
-        "qty": 1
-      },
-      {
-        "name": "baking soda",
-        "unit": "tsp",
-        "qty": 1
-      },
-      {
-        "name": "vanilla",
-        "unit": "tsp",
-        "qty": 1
-      },
-      {
-        "name": "salt",
-        "unit": "tsp",
-        "qty": 0.125
-      }
-    ],
-    "url": "http:\/\/inspirationformoms.porch.com\/2016\/03\/the-best-peanut-butter-cookies.html",
-    "url_ymly": "http:\/\/www.yummly.com\/recipe\/The-Best-Peanut-Butter-Cookies-1536646",
-    "yld": "makes about 30 cookies",
-    "num": 15,
-    "id": "The-Best-Peanut-Butter-Cookies-1536646"
-  },
-  {
-    "ingredientLines": [
       "1 C Peanut Butter",
       "1 egg",
       "1 C Sugar",
@@ -4015,7 +3666,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -4053,7 +3704,7 @@ var pbCookies = [
         "qty": 1
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -4105,7 +3756,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -4164,7 +3815,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -4299,7 +3950,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -4376,7 +4027,7 @@ var pbCookies = [
         "qty": 0.5
       },
       {
-        "name": "egg",
+        "name": "eggs",
         "unit": "",
         "qty": 1
       },
@@ -4471,7 +4122,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -4542,7 +4193,7 @@ var sugarCookies = [
         "qty": 1.5
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -4562,67 +4213,7 @@ var sugarCookies = [
     "yld": null, 
     "num": 4, 
     "id": "Chewy-Sugar-Cookies-1830365"
-  }, 
-  {
-    "ingredientLines": [
-      "1 cup (2 sticks) butter, softened", 
-      "1\u00bd cups granulated sugar", 
-      "1 egg", 
-      "2\u00bc cups all-purpose flour", 
-      "\u00bd teaspoon baking powder", 
-      "\u00bd teaspoon Kosher salt", 
-      "1 teaspoon vanilla", 
-      "\u00bc cup granulated sugar for rolling cookies"
-    ], 
-    "name": "Chewy Sugar Cookies", 
-    "ingredients": [
-      {
-        "name": "butter", 
-        "unit": "cup", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "white sugar", 
-        "unit": "cup", 
-        "qty": 1.5
-      }, 
-      {
-        "name": "egg", 
-        "unit": "", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "all-purpose flour", 
-        "unit": "cup", 
-        "qty": 2.25
-      }, 
-      {
-        "name": "baking powder", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "salt", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "vanilla", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "sugar for dusting", 
-        "unit": "cup", 
-        "qty": 0.25
-      }
-    ], 
-    "url": "http://addapinch.com/chewy-sugar-cookies-recipe/#.Usbj2PRDuSo", 
-    "url_ymly": "http://www.yummly.com/recipe/Chewy-Sugar-Cookies-1814030", 
-    "yld": "36 cookies", 
-    "num": 18, 
-    "id": "Chewy-Sugar-Cookies-1814030"
-  }, 
+  },
   {
     "ingredientLines": [
       "\u00bd cup unsalted butter", 
@@ -4646,7 +4237,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -4701,7 +4292,7 @@ var sugarCookies = [
         "qty": 1.5
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -4736,67 +4327,7 @@ var sugarCookies = [
     "yld": "36 cookies", 
     "num": 18, 
     "id": "Chewy-Sugar-Cookies-1547029"
-  }, 
-  {
-    "ingredientLines": [
-      "2 3/4 cups all-purpose flour", 
-      "1 teaspoon baking soda", 
-      "1/2 teaspoon baking powder", 
-      "1 cup butter, softened", 
-      "1 1/2 cups white sugar", 
-      "1 egg", 
-      "1 teaspoon vanilla extract", 
-      "Assorted sprinkles"
-    ], 
-    "name": "Sugar Cookies", 
-    "ingredients": [
-      {
-        "name": "all-purpose flour", 
-        "unit": "cup", 
-        "qty": 2.75
-      }, 
-      {
-        "name": "baking soda", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "baking powder", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "butter", 
-        "unit": "cup", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "white sugar", 
-        "unit": "cup", 
-        "qty": 1.5
-      }, 
-      {
-        "name": "egg", 
-        "unit": "", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "vanilla", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "sprinkles", 
-        "unit": "", 
-        "qty": 0.0
-      }
-    ], 
-    "url": "http://highheelstohotwheels.com/2013/07/sugar-cookies/", 
-    "url_ymly": "http://www.yummly.com/recipe/Sugar-Cookies-1746230", 
-    "yld": "48 cookies", 
-    "num": 24, 
-    "id": "Sugar-Cookies-1746230"
-  },  
+  },
   {
     "ingredientLines": [
       "2 sticks unsalted butter, softened", 
@@ -4821,7 +4352,7 @@ var sugarCookies = [
         "qty": 1.5
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -4941,7 +4472,7 @@ var sugarCookies = [
         "qty": 6.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -5015,7 +4546,7 @@ var sugarCookies = [
         "qty": 1.5
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
@@ -5030,60 +4561,6 @@ var sugarCookies = [
     "yld": null, 
     "num": 4, 
     "id": "Easy-sugar-cookies-369923"
-  }, 
-  {
-    "ingredientLines": [
-      "\u00bd cup unsalted butter", 
-      "1 cup white sugar", 
-      "1 egg", 
-      "1 tsp. vanilla extract", 
-      "\u00bd tsp. baking powder", 
-      "\u00bc tsp. salt", 
-      "2 cups all-purpose flour"
-    ], 
-    "name": "Sugar Cookies", 
-    "ingredients": [
-      {
-        "name": "butter", 
-        "unit": "cup", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "white sugar", 
-        "unit": "cup", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "egg", 
-        "unit": "", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "vanilla", 
-        "unit": "tsp", 
-        "qty": 1.0
-      }, 
-      {
-        "name": "baking powder", 
-        "unit": "tsp", 
-        "qty": 0.5
-      }, 
-      {
-        "name": "salt", 
-        "unit": "tsp", 
-        "qty": 0.25
-      }, 
-      {
-        "name": "all-purpose flour", 
-        "unit": "cup", 
-        "qty": 2.0
-      }
-    ], 
-    "url": "http://www.aheadofthyme.com/2015/12/sugar-cookies/", 
-    "url_ymly": "http://www.yummly.com/recipe/Sugar-Cookies-1431431", 
-    "yld": "24 cookies", 
-    "num": 12, 
-    "id": "Sugar-Cookies-1431431"
   }, 
   {
     "ingredientLines": [
@@ -5118,7 +4595,7 @@ var sugarCookies = [
         "qty": 1.0
       }, 
       {
-        "name": "egg", 
+        "name": "eggs", 
         "unit": "", 
         "qty": 1.0
       }, 
