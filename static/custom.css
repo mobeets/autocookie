@@ -43,6 +43,12 @@ body {
 #navwords:hover {
     color: #DFDFDF;
 }
+#bigtitle {
+    color: white;
+}
+#bigtitle:hover {
+    text-decoration: none;
+}
 
 h1 {
     color: white;
