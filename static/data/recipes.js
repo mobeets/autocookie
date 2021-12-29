@@ -2928,6 +2928,23 @@ var ccCookies = [
         ]
     },
     {
+        "url": "https://guides.brit.co/guides/make-cookies-when-you-have-no-eggs/particle-3",
+        "name": "How to make cookies when you have no eggs",
+        "ingredients": [
+            {'name': 'coconut oil', 'qty': 0.5, 'unit': 'cup'},
+            {'name': 'butter', 'qty': 0.5, 'unit': 'cup'},
+            {'name': 'brown sugar', 'qty': 0.5, 'unit': 'cup'},
+            {'name': 'white sugar', 'qty': 0.5, 'unit': 'cup'},
+            {'name': 'vanilla', 'qty': 3, 'unit': 'tsp'},
+            {'name': 'baking soda', 'qty': 1, 'unit': 'tsp'},
+            {'name': 'baking powder', 'qty': 1, 'unit': 'tsp'},
+            {'name': 'salt', 'qty': 0.5, 'unit': 'tsp'},
+            {'name': 'flour', 'qty': 2, 'unit': 'cup'},
+            {'name': 'milk', 'qty': 0.25, 'unit': 'cup'},
+            {'name': 'chocolate chips', 'qty': 1, 'unit': 'cup'},
+        ]
+    },
+    {
         "url": "http://www.cookingwithvinyl.com/duet-chocolate-chip-cookies/", 
         "name": "Chocolate Chip Cookies", 
         "ingredients": [

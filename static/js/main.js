@@ -146,6 +146,7 @@ function initRecipe(recipeInd, ranges) {
   }
   checkOutOfBoundsIngredients(curRecipe, ranges);  
   $('.progress').click(toggleIngredient);
+  $('.close').click(removeIngred);
 }
 
 function selectRecipePreset(event) {
@@ -253,6 +254,7 @@ function addNewIngred() {
   curRecipe.push(item);
   initIngredient(item, curRecipe.length-1);
   $('.progress').click(toggleIngredient);
+  // $('.close').click(removeIngred);
 }
 
 function makeClosed(nm, rotateX) {
@@ -290,7 +292,7 @@ function init() {
   $('#food-1').click();
   $('#export').click(exportRecipe);
   $('#randomize').click(autoRecipe);
-  $('.close').click(removeIngred);
+  // $('.close').click(removeIngred);
 }
 
 $(document).ready(init);
